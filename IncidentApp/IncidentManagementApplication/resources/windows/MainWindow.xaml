@@ -1,0 +1,18 @@
+﻿<Window x:Class="IncidentManagementApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IncidentManagementApplication"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="mainWindow" Background="Beige">
+        <DockPanel x:Name="pnlNav" LastChildFill="False" Margin="0,0,655,0" Width="150" x:FieldModifier="public">
+            <Frame x:Name="frameNav" Content="Frame" Width="150" Source="/resources/frames/NavigationFrame.xaml"/>
+        </DockPanel>
+        <DockPanel x:Name="pnlMain" LastChildFill="False" Margin="150,0,0,0" x:FieldModifier="public">
+            <Frame x:Name="frameMain" Content="Frame" DockPanel.Dock="Top" Height="432" Source="/resources/pages/DashboardPage.xaml"/>
+        </DockPanel>
+
+    </Grid>
+</Window>
