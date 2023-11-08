@@ -10,6 +10,7 @@ using DAL;
 
 namespace IncidentManagementApplication
 {
+    //dfgfghfkhgfgfg
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
