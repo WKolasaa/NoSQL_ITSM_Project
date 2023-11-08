@@ -8,41 +8,22 @@ namespace DAL
 {
     public class DAO
     {
-        const string dbConnection = "mongodb+srv://incidentAppAdmin:admin123@clustertest.8blrxea.mongodb.net/?retryWrites=true&w=majority";
-        const string dbName = "InhollandNoSQLProjectIncidentApp";
+        //Db connection - Ignas
+        private const string dbConnection = "mongodb+srv://incidentAppAdmin:admin123@clustertest.8blrxea.mongodb.net/?retryWrites=true&w=majority";
+        private const string dbName = "InhollandNoSQLProjectIncidentApp";
 
         private MongoClient client;
         private IMongoDatabase database;
 
         public DAO()
         {
-            setMongoClient();
-            setDatabase();
-        }
-
-        private void setMongoClient()
-        {
-            client = new MongoClient(dbConnection);
-        }
-
-        private void setDatabase()
-        {
+            this.client = new MongoClient(dbConnection);
             this.database = client.GetDatabase(dbName);
         }
         
-        private IMongoCollection<BsonDocument> getCollection(string selectedCollectionName)
+        protected IMongoCollection<BsonDocument> getCollection(string selectedCollectionName)
         {
             return database.GetCollection<BsonDocument>(selectedCollectionName);
-        }
-
-        public void getEmployees()
-        {
-            IMongoCollection<BsonDocument> collection = getCollection("Employees");
-            var bsonDocs = collection.Find(new BsonDocument()).ToList();
-            foreach (var document in bsonDocs)
-            {
-                Console.WriteLine(document.ToJson().ToString());
-            }
         }
     }
 }

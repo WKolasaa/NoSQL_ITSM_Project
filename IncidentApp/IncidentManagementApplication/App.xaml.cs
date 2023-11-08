@@ -6,7 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using DAL;
 
 namespace IncidentManagementApplication
 {
@@ -15,12 +14,8 @@ namespace IncidentManagementApplication
     /// </summary>
     public partial class App : Application
     {
-        DAOService dbService;
-
         public App()
         {
-            this.dbService = new DAOService();
-            //dbService.getEmployees(); // breakpoint in DAO foreach, and uncomment this for testing if db works
         }
     }
 }
