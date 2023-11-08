@@ -8,5 +8,17 @@
       d:DesignHeight="434" d:DesignWidth="600"
       Title="DashboardPage"
       Background="Wheat">
-    <Label x:Name="lblDashboard" Content="Dashboard" HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top" Height="62" Width="195" FontSize="36"/>
+    <Grid>
+        <Label x:Name="lbl1" Content="Dashboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Label x:Name="lblUnresolved" Content="" HorizontalAlignment="Left" Margin="36,82,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblDeadline" Content="" HorizontalAlignment="Left" Margin="36,165,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="ListBtn" Content="SHOW LIST" HorizontalAlignment="Left" Margin="478,13,0,0" VerticalAlignment="Top" Width="98" Height="34" Background="#FF51DCD9"/>
+        <ListView x:Name="TicketsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,52,0,-1" Background="Wheat">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
 </Page>

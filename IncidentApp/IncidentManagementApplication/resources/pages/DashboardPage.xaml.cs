@@ -24,6 +24,9 @@ namespace IncidentManagementApplication.pages
         public DashboardPage()
         {
             InitializeComponent();
+            //TicketsList.Visibility = Visibility.Hidden;
         }
+
+        
     }
 }

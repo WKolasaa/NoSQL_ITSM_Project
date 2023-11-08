@@ -14,5 +14,10 @@ namespace Service
         {
             dao.getEmployees();
         }
+
+        public void getTickets()
+        {
+            dao.getTickets();
+        }
     }
 }

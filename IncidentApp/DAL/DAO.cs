@@ -44,5 +44,15 @@ namespace DAL
                 Console.WriteLine(document.ToJson().ToString());
             }
         }
+
+        public void getTickets()
+        {
+            IMongoCollection<BsonDocument> collection = getCollection("Tickets");
+            var bsonDocs = collection.Find(new BsonDocument()).ToList();
+            foreach (var document in bsonDocs)
+            {
+                Console.WriteLine(document.ToJson().ToString());
+            }
+        }
     }
 }
