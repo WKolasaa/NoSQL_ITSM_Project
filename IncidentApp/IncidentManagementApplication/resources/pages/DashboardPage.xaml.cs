@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,19 @@ namespace IncidentManagementApplication.pages
     /// </summary>
     public partial class DashboardPage : Page
     {
+        DAOService service = new DAOService();
         public DashboardPage()
         {
             InitializeComponent();
-            //TicketsList.Visibility = Visibility.Hidden;
+            TicketsList.Visibility = Visibility.Hidden;
+            service.getTickets();
         }
 
-        
+        private void ListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TicketsList.Visibility = Visibility.Visible;
+        }
+
+       
     }
 }
