@@ -10,10 +10,9 @@
 
     <Grid Margin="0,0,0,0">
         <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="34,21,0,0" VerticalAlignment="Top" Height="46" Width="82" Click="btnLogin_Click"/>
-        <Button x:Name="btnCreateIncident" Content="Create Incident" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top" Height="46" Width="82" Click="btnCreateIncident_Click"/>
+        <Button x:Name="btnCreateTicket" Content="Create ticket" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top" Height="46" Width="82" Click="btnCreateTicket_Click"/>
         <Button x:Name="btnViewTickets" Content="View tickets" HorizontalAlignment="Left" Margin="34,123,0,0" VerticalAlignment="Top" Height="46" Width="82" Click="btnViewTickets_Click"/>
         <Button x:Name="btnDashboard" Content="Dashboard" HorizontalAlignment="Left" Margin="34,174,0,0" VerticalAlignment="Top" Height="46" Width="82" Click="btnDashboard_Click"/>
-        <Button x:Name="btnTicketCrud" Content="Ticket CRUD" HorizontalAlignment="Left" Margin="34,298,0,0" VerticalAlignment="Top" Height="46" Width="82" Click="btnTicketCrud_Click"/>
         <Button x:Name="btnCreateEmployee" Content="Create employee" HorizontalAlignment="Left" Margin="34,349,0,0" VerticalAlignment="Top" Height="46" Width="82" Click="btnCreateEmployee_Click"/>
     </Grid>
 </Page>

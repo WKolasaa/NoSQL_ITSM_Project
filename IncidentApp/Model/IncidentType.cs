@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    internal class Class1
+    //IncidentType enum - Ignas
+    public enum IncidentType
     {
+        Unknown,
+        BrokenEquipment,
+        SoftwareError
     }
 }

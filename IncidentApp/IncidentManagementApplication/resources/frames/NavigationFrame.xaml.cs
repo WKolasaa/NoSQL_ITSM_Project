@@ -34,9 +34,10 @@ namespace IncidentManagementApplication.resources.frames
             
         }
 
-        private void btnCreateIncident_Click(object sender, RoutedEventArgs e)
+        // Ticket create - Ignas
+        private void btnCreateTicket_Click(object sender, RoutedEventArgs e)
         {
-            currentWindow.frameMain.Source = new Uri("../pages/IncidentPage.xaml", UriKind.Relative);
+            currentWindow.frameMain.Source = new Uri("../pages/TicketPage.xaml", UriKind.Relative);
         }
 
         private void btnViewTickets_Click(object sender, RoutedEventArgs e)
@@ -47,11 +48,6 @@ namespace IncidentManagementApplication.resources.frames
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
             currentWindow.frameMain.Source = new Uri("../pages/DashboardPage.xaml", UriKind.Relative);
-        }
-
-        private void btnTicketCrud_Click(object sender, RoutedEventArgs e)
-        {
-            currentWindow.frameMain.Source = new Uri("../pages/TicketCRUDPage.xaml", UriKind.Relative);
         }
 
         private void btnCreateEmployee_Click(object sender, RoutedEventArgs e)
