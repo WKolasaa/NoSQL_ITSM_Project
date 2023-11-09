@@ -31,7 +31,7 @@ namespace IncidentManagementApplication.resources.frames
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            
+            currentWindow.frameMain.Source = new Uri("../pages/DashboardPage.xaml", UriKind.Relative);
         }
 
         private void btnCreateIncident_Click(object sender, RoutedEventArgs e)

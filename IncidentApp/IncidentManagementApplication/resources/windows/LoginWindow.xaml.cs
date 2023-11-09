@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using IncidentManagementApplication.resources.windows;
 
 namespace IncidentManagementApplication.windows
 {
@@ -19,9 +21,35 @@ namespace IncidentManagementApplication.windows
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private LoginService loginService;
         public LoginWindow()
         {
             InitializeComponent();
+            loginService = new LoginService();
+        }
+
+        
+        private void Button_ForgotPassword(object sender, RoutedEventArgs e)
+        {
+            ForgetPasswordWindow forgetPassword=new ForgetPasswordWindow();
+            forgetPassword.Show();
+        }
+
+        private void Button_Login(object sender, RoutedEventArgs e)
+        {
+            string username = txtUsername.Text;
+            string password = passwordtxt.Password;
+
+            if (loginService.CheckUserCredentials(username, password))
+            {
+                MessageBox.Show("Successfully logged in");
+            }
+            else
+            {
+                MessageBox.Show("Failed to login");
+            }
         }
     }
+
+ 
 }
