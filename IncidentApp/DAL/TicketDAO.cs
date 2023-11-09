@@ -50,5 +50,32 @@ namespace DAL
             };
             return document;
         }
+
+        public int getTicketsCount()
+        {
+            int ticketCount = (int)ticketCollection.CountDocuments(new BsonDocument());
+            return ticketCount;
+        }
+
+        public int getOpenedTicketCount()
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("status", Status.Open);
+            int openedTicketCount = (int)ticketCollection.CountDocuments(filter);
+            return openedTicketCount;
+        }
+
+        public int getResolvedTicketCount()
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("status", Status.Resolved);
+            int resolvedTicketCount = (int)ticketCollection.CountDocuments(filter);
+            return resolvedTicketCount;
+        }
+
+        public int getClosedTicketCount()
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("status", Status.ForceClosed);
+            int closedTicketCount = (int)ticketCollection.CountDocuments(filter);
+            return closedTicketCount;
+        }
     }
 }
