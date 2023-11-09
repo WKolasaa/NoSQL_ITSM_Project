@@ -38,7 +38,12 @@ public class LoginService
         {
             From = new MailAddress("blueoceanwaves247@gmail.com"),
             Subject = "Password reset",
-            Body = $"To reset your password,copy paste the reset token:{resetToken}",
+            Body = $"Dear User,<br><br>" +
+                   $"You have requested to reset your password. Please use the following token to proceed with the process:<br><br>" +
+                   $"<strong>{resetToken}</strong><br><br>" +
+                   $"If you did not request a password reset, please ignore this email or contact our support team.<br><br>" +
+                   $"Best regards,<br>" +
+                   $"Your Team Garden Group",
             IsBodyHtml = true,
         };
         mailMessage.To.Add(email);
