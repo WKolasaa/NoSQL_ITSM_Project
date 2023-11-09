@@ -42,7 +42,11 @@ namespace IncidentManagementApplication.windows
 
             if (loginService.CheckUserCredentials(username, password))
             {
-                MessageBox.Show("Successfully logged in");
+                
+                
+                MainWindow main=new MainWindow();
+                main.Show();
+                this.Close();
             }
             else
             {
