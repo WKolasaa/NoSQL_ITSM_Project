@@ -20,10 +20,16 @@ namespace Service
         }
 
         // Ticket creation - Ignas
+        public int getLastTicketID()
+        {
+            return ticketDao.getLastTicketID();
+        }
+
         public void createNewTicket(Ticket ticket)
         {
             ticketDao.createNewTicket(ticket);
         }
+
 
         public int getTicketsAmount()
         {

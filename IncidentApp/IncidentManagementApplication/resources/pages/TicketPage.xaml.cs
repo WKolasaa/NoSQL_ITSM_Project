@@ -28,6 +28,44 @@ namespace IncidentManagementApplication.pages
         {
             InitializeComponent();
             tService = new TicketService();
+            resetFields();
+        }
+
+        private void setComboBoxWithEnum(ComboBox comboBox, Enum defaultEnum)
+        {
+            comboBox.ItemsSource = Enum.GetValues(defaultEnum.GetType());
+            comboBox.SelectedItem = defaultEnum;
+        }
+
+        private void setDatePickerFields(DatePicker dp)
+        {
+            dp.Text = DateTime.Now.ToString("f");
+            dp.IsEnabled = false;
+        }
+
+        private void setTicketIDField()
+        {
+            int id = getLastTicketID();
+            id++;
+            txtBoxTicketId.Text = id.ToString();
+        }
+
+        private int getLastTicketID()
+        {
+            return tService.getLastTicketID();
+        }
+
+        private void resetFields()
+        {
+            setTicketIDField();
+            setComboBoxWithEnum(comboBoxTicketSeverity, Severity.None);
+            setComboBoxWithEnum(comboBoxTicketStatus, Status.Open);
+            setDatePickerFields(datePickTicketCreation);
+            setDatePickerFields(datePickTicketUpdate);
+            setComboBoxWithEnum(comboBoxIncidentType, IncidentType.Unknown);
+            txtBoxIncidentReporter.Text = String.Empty;
+            // Once Salman is done with login, add an automatic Reporter assign, instead of manual input
+            txtBoxIncidentDescription.Text = String.Empty;
         }
 
         // Ticket creation - Ignas
@@ -35,6 +73,7 @@ namespace IncidentManagementApplication.pages
         {
             Ticket ticket = getTicket();
             createTicket(ticket);
+            resetFields();
         }
 
         private void createTicket(Ticket ticket)
@@ -44,15 +83,17 @@ namespace IncidentManagementApplication.pages
 
         private Ticket getTicket()
         {
-            int incidentId = int.Parse(txtBoxIncidentId.Text);
-            int incidentType = int.Parse(txtBoxIncidentType.Text);
+            int incidentId = int.Parse(txtBoxTicketId.Text);
+            int incidentType = (int)comboBoxIncidentType.SelectedItem;
             string incidentReporter = txtBoxIncidentReporter.Text;
             string incidentDesc = txtBoxIncidentDescription.Text;
             Incident incident = new Incident(incidentId, incidentType, incidentReporter, incidentDesc);
             int ticketId = int.Parse(txtBoxTicketId.Text);
-            int ticketSeverity = int.Parse(txtBoxTicketSeverity.Text);
-            int ticketStatus = int.Parse(txtBoxTicketStatus.Text);
-            Ticket ticket = new Ticket(ticketId, ticketSeverity, ticketStatus, DateTime.Now, DateTime.Now, incident);
+            int ticketSeverity = (int)comboBoxTicketSeverity.SelectedItem;
+            int ticketStatus = (int)comboBoxTicketStatus.SelectedItem;
+            DateTime dateCreated = datePickTicketCreation.SelectedDate ?? DateTime.Now;
+            DateTime dateUpdated = datePickTicketUpdate.SelectedDate ?? DateTime.Now;
+            Ticket ticket = new Ticket(ticketId, ticketSeverity, ticketStatus, dateCreated, dateUpdated, incident);
             return ticket;
         }
 

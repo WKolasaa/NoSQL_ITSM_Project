@@ -16,15 +16,15 @@
                 <StackPanel Orientation="Vertical" Margin="10,5,10,5">
                     <StackPanel Orientation="Horizontal">
                         <Label Width="100" Content="ID:"/>
-                        <TextBox x:Name="txtBoxTicketId" Width="150" />
+                        <TextBox x:Name="txtBoxTicketId" Width="150" IsEnabled="False" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Width="100" Content="Severity:"/>
-                        <TextBox x:Name="txtBoxTicketSeverity" Width="150"/>
+                        <ComboBox x:Name="comboBoxTicketSeverity" Width="150"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Width="100" Content="Status:"/>
-                        <TextBox x:Name="txtBoxTicketStatus" Width="150"/>
+                        <ComboBox x:Name="comboBoxTicketStatus" Width="150"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Width="100" Content="Date Created:"/>
@@ -39,12 +39,8 @@
             <GroupBox Header="Incident Details" Height="172" Width="288" Margin="0,0,0,0">
                 <StackPanel Orientation="Vertical" Margin="10,5,10,5">
                     <StackPanel Orientation="Horizontal">
-                        <Label Width="100" Content="ID:"/>
-                        <TextBox x:Name="txtBoxIncidentId" Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
                         <Label Width="100" Content="Type:"/>
-                        <TextBox x:Name="txtBoxIncidentType" Width="150"/>
+                        <ComboBox x:Name="comboBoxIncidentType" Width="150"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Width="100" Content="Reporter:"/>
@@ -52,7 +48,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Width="100" Content="Description:"/>
-                        <TextBox x:Name="txtBoxIncidentDescription" Width="150" Height="60"/>
+                        <TextBox x:Name="txtBoxIncidentDescription" Width="150" Height="90"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
@@ -71,5 +67,6 @@
                     Content="Delete Ticket" 
                     Width="100" Height="40"/>
         </StackPanel>
+        
     </StackPanel>
 </Page>

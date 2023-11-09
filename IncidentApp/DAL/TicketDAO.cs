@@ -51,6 +51,21 @@ namespace DAL
             return document;
         }
 
+        public int getLastTicketID()
+        {
+            var filter = Builders<BsonDocument>.Filter.Empty;
+            var sort = Builders<BsonDocument>.Sort.Descending("_id");
+            var projection = Builders<BsonDocument>.Projection.Include("_id").Slice("_id", 1);
+
+            var result = ticketCollection.Find(filter).Sort(sort).Project(projection).FirstOrDefault();
+
+            if (result != null)
+            {
+                return result["_id"].ToInt32();
+            }
+            throw new Exception();
+        }
+
         public int getTicketsCount()
         {
             int ticketCount = (int)ticketCollection.CountDocuments(new BsonDocument());
