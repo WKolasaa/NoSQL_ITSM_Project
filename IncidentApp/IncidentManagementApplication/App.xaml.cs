@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace IncidentManagementApplication
 {
-    //dfgfghfkhgfgfg
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
@@ -17,6 +17,10 @@ namespace IncidentManagementApplication
     {
         public App()
         {
+           
+           
+            
+
         }
     }
 }
