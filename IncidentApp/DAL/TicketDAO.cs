@@ -136,8 +136,8 @@ namespace DAL
         private Ticket convertBsonDocumentToTicket(BsonDocument document)
         {
             Incident incident = new Incident(document["incident"]["_id"].ToInt32(), document["incident"]["type"].ToInt32(), document["incident"]["reporter"].ToString(), document["incident"]["description"].ToString());
-            DateTime dateCreate = DateTime.Parse(document["dateCreated"].AsString); // changed from the original to better parsing for DateTime
-            DateTime dateUpdate = DateTime.Parse(document["dateUpdated"].AsString); 
+            DateTime dateCreate = DateTime.Parse(document["dateCreated"].ToString()); // changed from the original to better parsing for DateTime
+            DateTime dateUpdate = DateTime.Parse(document["dateUpdated"].ToString()); 
             
             Ticket ticket = new Ticket(document["_id"].ToInt32(), document["severity"].ToInt32(), document["status"].ToInt32(), dateCreate, dateUpdate, incident);
             return ticket;
