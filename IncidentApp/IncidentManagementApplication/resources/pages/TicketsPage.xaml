@@ -1,16 +1,14 @@
-﻿<Page x:Class="IncidentManagementApplication.pages.TicketsPage"
+﻿<Page x:Class="IncidentManagementApplication.resources.pages.TicketsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:IncidentManagementApplication.pages"
+      xmlns:local="clr-namespace:IncidentManagementApplication.resources.pages"
       mc:Ignorable="d" 
-      d:DesignHeight="434" d:DesignWidth="600"
-      Title="TicketsPage"
-      Background="LightSalmon">
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TicketsPage">
 
     <Grid>
-        <Label x:Name="lblTickets" Content="Tickets" HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top" Height="62" Width="126" FontSize="36"/>
-
+        
     </Grid>
 </Page>
