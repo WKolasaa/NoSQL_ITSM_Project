@@ -86,6 +86,9 @@ namespace Service
         public void updateTicket(Ticket ticket)
         {
             ticketDao.updateTicket(ticket);
+        }
+
+
 
         public void closeTicket(Ticket selectedItem)
         {

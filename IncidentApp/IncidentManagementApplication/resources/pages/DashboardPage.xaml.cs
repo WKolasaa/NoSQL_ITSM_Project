@@ -31,7 +31,7 @@ namespace IncidentManagementApplication.pages
             //IncidentCalculation();
 
             string employeeName = "Igmas";
-            List<Ticket> tickets = service.getTicketsByEmployeeName(employeeName);
+            List<Ticket> tickets = service.getTicketsForUser(employeeName);
             TicketsList.ItemsSource = tickets;
             lblUnresolved.Content = tickets.Count;
         }

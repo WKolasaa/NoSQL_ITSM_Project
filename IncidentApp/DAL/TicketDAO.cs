@@ -36,6 +36,7 @@ namespace DAL
 
         private BsonDocument convertTicketToBsonDocument(Ticket ticket)
         {
+            
             Incident incident = ticket.Incident;
             var document = new BsonDocument {
                 { "_id", ticket.getID() },

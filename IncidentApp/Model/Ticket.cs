@@ -19,7 +19,7 @@ namespace Model
         public Incident Incident { get; private set; }
 
         private Severity _severity;
-        public Severity Severity 
+        public Severity Severity
         {
             get { return _severity; } 
             set { _severity = value; }
