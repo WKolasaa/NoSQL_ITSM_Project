@@ -30,7 +30,7 @@ namespace Service
             ticketDao.createNewTicket(ticket);
         }
 
-
+        // Getting different types of tickets - Rienat
         public int getTicketsAmount()
         {
             int amount = 0;

@@ -18,16 +18,13 @@ using System.Windows.Shapes;
 
 namespace IncidentManagementApplication.pages
 {
-    /// <summary>
-    /// Interaction logic for DashboardPage.xaml
-    /// </summary>
+    
     public partial class DashboardPage : Page
     {
         TicketService service = new TicketService();
-        int counter = 1;
         public DashboardPage()
         {
-            InitializeComponent();
+            InitializeComponent();  
             TicketsList.Visibility = Visibility.Hidden;
             IncidentCalculation();
         }
