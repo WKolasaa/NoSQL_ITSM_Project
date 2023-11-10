@@ -1,5 +1,6 @@
 ﻿using Model;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -91,6 +92,21 @@ namespace DAL
             var filter = Builders<BsonDocument>.Filter.Eq("status", Status.ForceClosed);
             int closedTicketCount = (int)ticketCollection.CountDocuments(filter);
             return closedTicketCount;
+        }
+
+        public List<Ticket> GetTicketsByEmployeeName(string employeeName)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("reporter", employeeName);
+            var result = ticketCollection.Find(filter).ToList();
+
+            List<Ticket> tickets = new List<Ticket>();
+
+            foreach (var bsonDocument in result)
+            {
+                tickets.Add(BsonSerializer.Deserialize<Ticket>(bsonDocument));
+            }
+
+            return tickets;
         }
     }
 }

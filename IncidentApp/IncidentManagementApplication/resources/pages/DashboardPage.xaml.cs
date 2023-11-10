@@ -3,6 +3,7 @@ using Model;
 using Service;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,17 @@ namespace IncidentManagementApplication.pages
     public partial class DashboardPage : Page
     {
         TicketService service = new TicketService();
+        ObservableCollection<Ticket> tickets;
         public DashboardPage()
         {
             InitializeComponent();  
             TicketsList.Visibility = Visibility.Hidden;
-            IncidentCalculation();
+            //IncidentCalculation();
+
+            string employeeName = "Igmas";
+            List<Ticket> tickets = service.getTicketsByEmployeeName(employeeName);
+            TicketsList.ItemsSource = tickets;
+            lblUnresolved.Content = tickets.Count;
         }
 
         public void IncidentCalculation()

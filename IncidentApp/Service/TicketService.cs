@@ -58,5 +58,11 @@ namespace Service
             amount = ticketDao.getClosedTicketCount();
             return amount;
         }
+
+        public List<Ticket> getTicketsByEmployeeName(string name)
+        {
+            List<Ticket> tickets = ticketDao.GetTicketsByEmployeeName(name);
+            return tickets;
+        }
     }
 }
