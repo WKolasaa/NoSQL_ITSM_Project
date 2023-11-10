@@ -17,4 +17,14 @@ public class UserService
         User newUser = new User(username, firstName, lastName, email, location, password, employeeId, role);
         _userDAO.AddUser(newUser, password);
     }
+
+    public List<User> getAllUsers()
+    {
+        return _userDAO.getAllUsers();
+    }
+
+    public void removeUser(int employeeId)
+    {
+        _userDAO.removeUser(employeeId);
+    }
 }

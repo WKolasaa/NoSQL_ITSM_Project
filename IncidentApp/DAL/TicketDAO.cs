@@ -92,5 +92,36 @@ namespace DAL
             int closedTicketCount = (int)ticketCollection.CountDocuments(filter);
             return closedTicketCount;
         }
+
+        // Wojtek
+
+        public List<Ticket> getTicketsForUser(string userName)
+        {
+            List<Ticket> tickets = new List<Ticket>();
+            var filter = Builders<BsonDocument>.Filter.Eq("incident.reporter", userName);
+            var result = ticketCollection.Find(filter).ToList();
+
+            foreach (var document in result)
+            {
+                tickets.Add(convertBsonDocumentToTicket(document));
+            }
+
+            return tickets;
+        }
+
+        private Ticket convertBsonDocumentToTicket(BsonDocument document)
+        {
+            Incident incident = new Incident(document["incident"]["_id"].ToInt32(), document["incident"]["type"].ToInt32(), document["incident"]["reporter"].ToString(), document["incident"]["description"].ToString());
+            Ticket ticket = new Ticket(document["_id"].ToInt32(), document["severity"].ToInt32(), document["status"].ToInt32(), document["dateCreated"].ToUniversalTime(), document["dateUpdated"].ToUniversalTime(), incident);
+
+            return ticket;
+        }
+
+        public void removeTicket(int id)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", id);
+            ticketCollection.DeleteOne(filter);
+        }   
+
     }
 }

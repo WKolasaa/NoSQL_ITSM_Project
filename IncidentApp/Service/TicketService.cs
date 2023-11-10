@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,6 +58,16 @@ namespace Service
             int amount = 0;
             amount = ticketDao.getClosedTicketCount();
             return amount;
+        }
+
+        public List<Ticket> getTicketsForUser(string username)
+        {
+            return ticketDao.getTicketsForUser(username);
+        }
+
+        public void removeTicket(int id)
+        {
+            ticketDao.removeTicket(id);
         }
     }
 }

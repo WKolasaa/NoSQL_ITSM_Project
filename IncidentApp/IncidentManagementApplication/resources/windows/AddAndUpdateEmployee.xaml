@@ -1,0 +1,30 @@
+﻿<Window x:Class="IncidentManagementApplication.resources.windows.AddAndUpdateEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IncidentManagementApplication.resources.windows"
+        mc:Ignorable="d"
+        Title="AddAndUpdateEmployee" Height="450" Width="800">
+    <Grid>
+        <Label Content="Employee ID:" HorizontalAlignment="Left" Margin="131,3,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="131,303,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="First Name:" HorizontalAlignment="Left" Margin="131,53,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Last Name:" HorizontalAlignment="Left" Margin="131,103,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="131,153,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Margin="131,203,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Location:" HorizontalAlignment="Left" Margin="131,253,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Role:" HorizontalAlignment="Left" Margin="131,353,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="400,3,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" FontSize="18"/>
+        <TextBox x:Name="txtFirstName" HorizontalAlignment="Left" Margin="400,53,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" FontSize="18"/>
+        <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Margin="400,103,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" FontSize="18"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="400,153,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" FontSize="18"/>
+        <TextBox x:Name="txtUserName" HorizontalAlignment="Left" Margin="400,303,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" FontSize="18"/>
+        <ComboBox x:Name="cbLocation" HorizontalAlignment="Left" Margin="400,253,0,0" VerticalAlignment="Top" Width="208" FontSize="18"/>
+        <ComboBox x:Name="cbRole" HorizontalAlignment="Left" Margin="400,355,0,0" VerticalAlignment="Top" Width="208" FontSize="18"/>
+        <Button x:Name="btAddAndUpdate" Content="Add" HorizontalAlignment="Left" Margin="242,397,0,0" VerticalAlignment="Top" FontSize="18" Click="btAddAndUpdate_Click"/>
+        <Button x:Name="btCancel" Content="Cancel" HorizontalAlignment="Left" Margin="419,397,0,0" VerticalAlignment="Top" FontSize="18" Click="btCancel_Click"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="400,203,0,0" VerticalAlignment="Top" Width="208" FontSize="18"/>
+
+    </Grid>
+</Window>

@@ -32,5 +32,10 @@ namespace Model
         public DateTime getDateCreated() { return DateCreated; }
         public DateTime getDateUpdated() { return DateUpdated; }
         public Incident getIncident() { return Incident; }
+
+        public Ticket()
+        {
+            
+        }
     }
 }

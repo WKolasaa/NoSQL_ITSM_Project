@@ -1,6 +1,7 @@
 ﻿using Model;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace DAL;
 
@@ -84,6 +85,22 @@ public class UserDAO:DAO
         {
             return false;
         }
+    }
+
+    //Wojtek
+
+    public List<User> getAllUsers()
+    {
+        List<User> users = GetUserCollection().Find(new BsonDocument()).ToList();
+
+        return users;
+    }
+
+    public void removeUser(int employeeId)
+    {
+        var usersCollection = GetUserCollection();
+        var filter = Builders<User>.Filter.Eq("employeeId", employeeId);
+        usersCollection.DeleteOne(filter);
     }
 
 }

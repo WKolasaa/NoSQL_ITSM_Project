@@ -53,9 +53,11 @@ public class User
         {
             return BCrypt.Net.BCrypt.Verify(plainPassword, this.password);
         }
-     
 
-
+        public User()
+        {
+            
+        }
 
 
 
