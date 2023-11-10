@@ -11,12 +11,12 @@ namespace Model
     public class Ticket
     {
         // Ticket - Ignas
-        private int _id;
-        public int Id 
-        { 
-            get {  return _id; } 
-            set {  _id = value; }
-        }
+        public int Id { get; private set; }
+        public Severity Severity { get; private set; }
+        public Status Status { get; private set; }
+        public DateTime DateCreated { get; private set; }
+        public DateTime DateUpdated { get; private set; }
+        public Incident Incident { get; private set; }
 
         private Severity _severity;
         public Severity Severity 
@@ -39,28 +39,16 @@ namespace Model
             set { _dateCreated = value; } 
         }
 
-        private DateTime _dateUpdated;
-        public DateTime DateUpdated 
-        { 
-            get { return _dateUpdated; } 
-            set { _dateUpdated = value; }
-        } 
+        public int getID() { return Id; }
+        public Severity getSeverity() { return Severity; }
+        public Status getStatus() { return Status; }
+        public DateTime getDateCreated() { return DateCreated; }
+        public DateTime getDateUpdated() { return DateUpdated; }
+        public Incident getIncident() { return Incident; }
 
-        private Incident _incident;
-        public Incident Incident 
-        { 
-            get { return _incident; } 
-            set { _incident = value; }
-        }
-
-        public Ticket(int id, int severity, int status, DateTime dateCreated, DateTime dateUpdated, Incident incident)
+        public Ticket()
         {
-            Id = id;
-            Severity = (Severity)severity;
-            Status = (Status)status;
-            DateCreated = dateCreated;
-            DateUpdated = dateUpdated;
-            Incident = incident;
+
         }
     }
 }

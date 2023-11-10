@@ -37,11 +37,11 @@ namespace DAL
         {
             Incident incident = ticket.Incident;
             var document = new BsonDocument {
-                { "_id", ticket.Id },
-                { "severity", ticket.Severity },
-                { "status", ticket.Status },
-                { "dateCreated", ticket.DateCreated.ToString("f") },
-                { "dateUpdated", ticket.DateUpdated.ToString("f") },
+                { "_id", ticket.getID() },
+                { "severity", ticket.getSeverity() },
+                { "status", ticket.getStatus() },
+                { "dateCreated", ticket.getDateCreated() },
+                { "dateUpdated", ticket.getDateUpdated() },
                 { "incident", new BsonDocument {
                     {"_id", incident.Id },
                     {"type", incident.Type },
@@ -132,15 +132,50 @@ namespace DAL
             return closedTicketCount;
         }
 
-        // BsonDoc convertion to Ticket class - Wojciech, taken from unfinished build
+        // Wojtek
+
+        public List<Ticket> GetTicketsForUser(string reporter)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("incident.reporter", reporter);
+            var bsonDocuments = ticketCollection.Find(filter).ToList();
+
+            var matchingTickets = bsonDocuments.Select(doc => convertBsonDocumentToTicket(doc)).ToList();
+            return matchingTickets;
+        }
+
         private Ticket convertBsonDocumentToTicket(BsonDocument document)
         {
-            Incident incident = new Incident(document["incident"]["_id"].ToInt32(), document["incident"]["type"].ToInt32(), document["incident"]["reporter"].ToString(), document["incident"]["description"].ToString());
-            DateTime dateCreate = DateTime.Parse(document["dateCreated"].AsString); // changed from the original to better parsing for DateTime
-            DateTime dateUpdate = DateTime.Parse(document["dateUpdated"].AsString); 
-            
-            Ticket ticket = new Ticket(document["_id"].ToInt32(), document["severity"].ToInt32(), document["status"].ToInt32(), dateCreate, dateUpdate, incident);
+            DateTime dateCreated = document["dateCreated"].ToLocalTime();
+            DateTime dateUpdated = document["dateUpdated"].ToLocalTime();
+
+            Incident incident = new Incident(
+                document["incident"]["_id"].ToInt32(),
+                document["incident"]["type"].ToInt32(),
+                document["incident"]["reporter"].ToString(),
+                document["incident"]["description"].ToString());
+
+            Ticket ticket = new Ticket(
+                document["_id"].ToInt32(),
+                document["severity"].ToInt32(),
+                document["status"].ToInt32(),
+                dateCreated,
+                dateUpdated,
+                incident);
+
             return ticket;
+        }
+
+        public void removeTicket(int id)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", id);
+            ticketCollection.DeleteOne(filter);
+        }
+
+        public void updateTicket(Ticket ticket)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", ticket.getID());
+            var update = Builders<BsonDocument>.Update.Set("severity", ticket.getSeverity()).Set("status", ticket.getStatus()).Set("dateUpdated", ticket.getDateUpdated());
+            ticketCollection.UpdateOne(filter, update);
         }
     }
 }

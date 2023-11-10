@@ -37,20 +37,27 @@ namespace IncidentManagementApplication.windows
 
         private void Button_Login(object sender, RoutedEventArgs e)
         {
-            string username = txtUsername.Text;
-            string password = passwordtxt.Password;
+            try
+            {
+                string username = txtUsername.Text;
+                string password = passwordtxt.Password;
 
-            if (loginService.CheckUserCredentials(username, password))
-            {
-                
-                
-                MainWindow main=new MainWindow();
-                main.Show();
-                this.Close();
+                if (loginService.CheckUserCredentials(username, password))
+                {
+                    LoggedUser loggedUser = LoggedUser.GetInstance();
+                    loggedUser.LogUser(loginService.returnUser());
+                    MainWindow main = new MainWindow();
+                    main.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to login");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Failed to login");
+                MessageBox.Show(ex.Message);
             }
         }
     }

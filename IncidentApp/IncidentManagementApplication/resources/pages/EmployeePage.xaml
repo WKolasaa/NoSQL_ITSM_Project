@@ -10,6 +10,22 @@
       Background="AntiqueWhite">
 
     <Grid>
-        <Label x:Name="lblAddEmployee" Content="Add Employee" HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top" Height="62" Width="250" FontSize="36"/>
+        <ListView x:Name="lvUsers" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,59,10,106" SelectionChanged="lvUsers_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Employee ID" Width="50" DisplayMemberBinding="{Binding employeeId}" />
+                    <GridViewColumn Header="Username" Width="80" DisplayMemberBinding="{Binding username}" />
+                    <GridViewColumn Header="First Name" Width="100" DisplayMemberBinding="{Binding firstName}" />
+                    <GridViewColumn Header="Last Name" Width="100" DisplayMemberBinding="{Binding lastName}" />
+                    <GridViewColumn Header="Email" Width="100" DisplayMemberBinding="{Binding email}" />
+                    <GridViewColumn Header="Location" Width="100" DisplayMemberBinding="{Binding Location}" />
+                    <GridViewColumn Header="Role" Width="50" DisplayMemberBinding="{Binding Role}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btAdd" Content="Add" HorizontalAlignment="Left" Margin="67,358,0,0" VerticalAlignment="Top" FontSize="18" Click="btAdd_Click"/>
+        <Button x:Name="btUpdate" Content="Update" HorizontalAlignment="Left" Margin="264,358,0,0" VerticalAlignment="Top" FontSize="18" Click="btUpdate_Click"/>
+        <Button x:Name="btRemove" Content="Remove" HorizontalAlignment="Left" Margin="465,358,0,0" VerticalAlignment="Top" FontSize="18" Click="btRemove_Click"/>
+        <Label Content="Employees" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
     </Grid>
 </Page>

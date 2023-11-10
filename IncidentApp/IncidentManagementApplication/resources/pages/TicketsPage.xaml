@@ -5,10 +5,33 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IncidentManagementApplication.resources.pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="TicketsPage">
+      d:DesignHeight="434" d:DesignWidth="600"
+      Title="TicketsPage"
+      Background="White">
 
     <Grid>
-        
+        <ComboBox x:Name="cbEmployee" HorizontalAlignment="Left" Margin="117,22,0,0" VerticalAlignment="Top" Width="204" FontSize="18" Tag="cbEmployee" SelectionChanged="cbEmployee_SelectionChanged"/>
+        <Label Content="Employee:" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.081" FontSize="18"/>
+        <ListView x:Name="lvTickets"  Margin="10,59,10,226" SelectionChanged="lvTickets_SelectionChanged" FontWeight="Bold" Background="White">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Severity" Width="150" DisplayMemberBinding="{Binding Severity}" />
+                    <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding Status}" />
+                    <GridViewColumn Header="DateCreated" Width="150" DisplayMemberBinding="{Binding DateCreated}" />
+                    <GridViewColumn Header="DateUpdated" Width="150" DisplayMemberBinding="{Binding DateUpdated}" />
+                    <GridViewColumn Header="Incident" Width="150" DisplayMemberBinding="{Binding Incident}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btAdd" Content="Create" HorizontalAlignment="Left" Margin="149,365,0,0" VerticalAlignment="Top" FontSize="18" Tag="btAdd" Click="btAdd_Click"/>
+        <Button x:Name="btUpdate" Content="Update" HorizontalAlignment="Left" Margin="264,365,0,0" VerticalAlignment="Top" FontSize="18" Tag="btUpdate" Click="btUpdate_Click"/>
+        <Button x:Name="btRemove" Content="Remove" HorizontalAlignment="Left" Margin="383,365,0,0" VerticalAlignment="Top" FontSize="18" Tag="btRemove" Click="btRemove_Click"/>
+        <TextBox x:Name="txtType" HorizontalAlignment="Left" Margin="99,226,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154" FontSize="18" IsEnabled="False"/>
+        <TextBox x:Name="txtReporter" HorizontalAlignment="Left" Margin="99,273,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154" FontSize="18" IsEnabled="False"/>
+        <Label Content="Type:" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Reporter:" HorizontalAlignment="Left" Margin="10,269,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Margin="367,222,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="223" Height="110" FontSize="18" IsEnabled="False"/>
+        <Label Content="Description:" HorizontalAlignment="Left" Margin="258,222,0,0" VerticalAlignment="Top" FontSize="18"/>
     </Grid>
 </Page>

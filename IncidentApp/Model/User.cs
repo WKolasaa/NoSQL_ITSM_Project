@@ -6,6 +6,7 @@ namespace Model;
 
 public class User
 {
+    // Salman
 
         [BsonElement("firstName")]
         public string firstName { get; private set; }
@@ -53,10 +54,9 @@ public class User
         {
             return BCrypt.Net.BCrypt.Verify(plainPassword, this.password);
         }
-     
 
-
-
-
-
+        public User()
+        {
+            
+        }
 }

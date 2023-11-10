@@ -1,11 +1,13 @@
 ﻿using Model;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace DAL;
 
 public class UserDAO:DAO
 {
+    // Salman
 
     public void StorePasswordResetToken(string email, string resetToken)
     {
@@ -86,4 +88,28 @@ public class UserDAO:DAO
         }
     }
 
+    //Wojtek
+
+    public List<User> getAllUsers()
+    {
+        List<User> users = GetUserCollection().Find(new BsonDocument()).ToList();
+
+        return users;
+    }
+
+    public void removeUser(int employeeId)
+    {
+        var usersCollection = GetUserCollection();
+        var filter = Builders<User>.Filter.Eq("employeeId", employeeId);
+        usersCollection.DeleteOne(filter);
+    }
+
+    public void updateUser(User user)
+    {
+        var usersCollection = GetUserCollection();
+        var filter = Builders<User>.Filter.Eq("employeeId", user.employeeId);
+        var update = Builders<User>.Update.Set("firstName", user.firstName).Set("lastName", user.lastName).Set("email", user.email).Set("Location", user.Location).Set("username", user.username).Set("password", user.password).Set("Role", user.Role);
+        usersCollection.UpdateOne(filter, update);
+    }
 }
+
