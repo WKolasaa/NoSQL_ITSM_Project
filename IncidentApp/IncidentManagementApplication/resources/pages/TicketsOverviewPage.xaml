@@ -1,0 +1,22 @@
+﻿<Page x:Class="IncidentManagementApplication.pages.TicketsOverviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IncidentManagementApplication.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="434" d:DesignWidth="600"
+      Title="TicketsPage"
+      Background="LightSalmon">
+
+    <StackPanel Orientation="Vertical">
+        <Label x:Name="lblTickets" Content="Tickets" HorizontalAlignment="Left" Margin="50,40,0,10" VerticalAlignment="Top" Height="62" Width="126" FontSize="36"/>
+        <Grid>
+            <DataGrid x:Name="dataGridTickets" ItemsSource="{Binding Tickets}" IsReadOnly="True" Height="180" Width="550"/>
+        </Grid>
+        <Button x:Name="btnCloseTicket" Content="Close ticket"
+            Click="btnCloseTicket_Click"
+            Height="30" Width="120" MaxWidth="150" 
+            HorizontalAlignment="Right" Margin="0,10,50,10" />
+    </StackPanel>
+</Page>

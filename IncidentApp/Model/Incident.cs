@@ -9,21 +9,39 @@ namespace Model
     public class Incident
     {
         // Incident - Ignas
-        private int Id;
-        private IncidentType Type;
-        private string Reporter; // swap for user when User class done
-        private string Description;
-
-        public Incident(int id, int type, string reporter, string description) {
-            this.Id = id;
-            this.Type = (IncidentType)type;
-            this.Reporter = reporter;
-            this.Description = description;
+        private int _id;
+        public int Id 
+        { 
+            get { return _id; } 
+            set { _id = value; }
         }
 
-        public int getID() { return Id; }
-        public IncidentType getType() { return Type; }
-        public string getReporter() { return Reporter;}
-        public string getDesc() { return Description; }
+        private IncidentType _type;
+        public IncidentType Type
+        {
+            get { return _type; }
+            set { _type = value; }
+        }
+
+        private string _reporter; // swap for user when User class done
+        public string Reporter
+        {
+            get { return _reporter; }
+            set { _reporter = value; }
+        }
+
+        private string _description;
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
+        }
+
+        public Incident(int id, int type, string reporter, string description) {
+            Id = id;
+            Type = (IncidentType)type;
+            Reporter = reporter;
+            Description = description;
+        }
     }
 }

@@ -19,7 +19,7 @@ using IncidentManagementApplication.resources.windows;
 using Model;
 using Service;
 
-namespace IncidentManagementApplication.pages
+namespace IncidentManagementApplication.resources.pages
 {
     /// <summary>
     /// Interaction logic for TicketsPage.xaml

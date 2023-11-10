@@ -3,6 +3,8 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +35,7 @@ namespace DAL
 
         private BsonDocument convertTicketToBsonDocument(Ticket ticket)
         {
-            Incident incident = ticket.getIncident();
+            Incident incident = ticket.Incident;
             var document = new BsonDocument {
                 { "_id", ticket.getID() },
                 { "severity", ticket.getSeverity() },
@@ -41,10 +43,10 @@ namespace DAL
                 { "dateCreated", ticket.getDateCreated() },
                 { "dateUpdated", ticket.getDateUpdated() },
                 { "incident", new BsonDocument {
-                    {"_id", incident.getID() },
-                    {"type", incident.getType() },
-                    {"reporter", incident.getReporter() },
-                    {"description", incident.getDesc() }
+                    {"_id", incident.Id },
+                    {"type", incident.Type },
+                    {"reporter", incident.Reporter },
+                    {"description", incident.Description }
                     }
                 }
             };
@@ -66,6 +68,43 @@ namespace DAL
             throw new Exception();
         }
 
+        // Get tickets - Ignas
+        public List<Ticket> getTickets()
+        {
+            List<Ticket> tickets = new List<Ticket>();
+            var filter = Builders<BsonDocument>.Filter.Empty;
+            var result = ticketCollection.Find(filter).ToList();
+
+            foreach (var document in result)
+            {
+                tickets.Add(convertBsonDocumentToTicket(document));
+            }
+            return tickets;
+        }
+
+        public List<Ticket> getNotClosedTickets()
+        {
+            List<Ticket> tickets = new List<Ticket>();
+            var filter = Builders<BsonDocument>.Filter.Ne("status", Status.ForceClosed);
+            var result = ticketCollection.Find(filter).ToList();
+
+            foreach (var document in result)
+            {
+                tickets.Add(convertBsonDocumentToTicket(document));
+            }
+            return tickets;
+        }
+
+        // Close ticket - Ignas
+        public void closeTicket(Ticket ticket)
+        {
+            var filt = Builders<BsonDocument>.Filter.Eq("_id", ticket.Id);
+            var upd = Builders<BsonDocument>.Update.Set("status", 1);
+
+            var result = ticketCollection.UpdateOne(filt, upd);
+        }
+
+        // get amount of tickets - Rienat
         public int getTicketsCount()
         {
             int ticketCount = (int)ticketCollection.CountDocuments(new BsonDocument());
@@ -138,6 +177,5 @@ namespace DAL
             var update = Builders<BsonDocument>.Update.Set("severity", ticket.getSeverity()).Set("status", ticket.getStatus()).Set("dateUpdated", ticket.getDateUpdated());
             ticketCollection.UpdateOne(filter, update);
         }
-
     }
 }

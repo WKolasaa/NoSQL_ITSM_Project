@@ -24,38 +24,36 @@ namespace IncidentManagementApplication.pages
     public partial class DashboardPage : Page
     {
         TicketService service = new TicketService();
+        int counter = 1;
         public DashboardPage()
         {
             InitializeComponent();
             TicketsList.Visibility = Visibility.Hidden;
-
-            double general_amount = service.getTicketsAmount();
-            double open_ticket_amount = service.getOpenedTicketsAmount();
-            double resolved_amount = service.getResolvedTicketsAmount();
-            double closed_amount = service.getClosedTicketsAmount();
-
-            /*lblUnresolved.Content = $"Opened tickets: {open_ticket_amount.ToString()}";
-            lblNoResolv.Content = $"Resolved tickets:{resolved_amount.ToString()}";
-            lblDeadline.Content = $"Closed tickets:{closed_amount.ToString()}";*/
-
-
-            IncidentCalculation(open_ticket_amount, resolved_amount, closed_amount, general_amount);
+            IncidentCalculation();
         }
 
-        public void IncidentCalculation(double general_amount, double open_ticket_amount, double resolved_amount, double closed_amount)
+        public void IncidentCalculation()
         {
-            double open_ticket_amount1 = (open_ticket_amount / general_amount) * 100;
-            double resolved_amount1 = (resolved_amount / general_amount) * 100;
-            double closed_amount1 = (closed_amount / general_amount) * 100;
+            int general_amount = service.getTicketsAmount();
+            int open_ticket_amount = service.getOpenedTicketsAmount();
+            int resolved_amount = service.getResolvedTicketsAmount();
+            int closed_amount = service.getClosedTicketsAmount();
 
-            lblUnresolved.Content = $"Opened tickets: {open_ticket_amount1.ToString()}%";
-            lblNoResolv.Content = $"Resolved tickets:{resolved_amount1.ToString()}%";
-            lblDeadline.Content = $"Closed tickets:{closed_amount1.ToString()}%";
+            double openTicketPercentage = (double)open_ticket_amount / general_amount * 100;
+            double resolvedPercentage = (double)resolved_amount / general_amount * 100;
+            double closedPercentage = (double)closed_amount / general_amount * 100;
+
+            lblUnresolved.Content = $"Opened tickets: {openTicketPercentage:F2}%";
+            lblNoResolv.Content = $"Resolved tickets: {resolvedPercentage:F2}%";
+            lblDeadline.Content = $"Closed tickets: {closedPercentage:F2}%";
         }
 
         private void ListBtn_Click(object sender, RoutedEventArgs e)
         {
             TicketsList.Visibility = Visibility.Visible;
+            lblDeadline.Visibility = Visibility.Hidden;
+            lblNoResolv.Visibility = Visibility.Hidden;
+            lblUnresolved.Visibility = Visibility.Hidden;
         }
 
        
