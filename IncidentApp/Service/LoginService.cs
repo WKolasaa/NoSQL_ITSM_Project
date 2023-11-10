@@ -10,6 +10,7 @@ namespace Service;
 public class LoginService
 {
     private readonly UserDAO userDAO;
+    private User loggedUser;
 
     public LoginService()
     {
@@ -26,7 +27,7 @@ public class LoginService
     }
 
 
-    private void SendPasswordEmailWithToken(string email, string resetToken)
+    private void SendPasswordEmailWithToken(string email, string resetToken) // additional individual functionality
     {
         var client = new SmtpClient("smtp.gmail.com", 587)
         {
@@ -43,7 +44,7 @@ public class LoginService
                    $"<strong>{resetToken}</strong><br><br>" +
                    $"If you did not request a password reset, please ignore this email or contact our support team.<br><br>" +
                    $"Best regards,<br>" +
-                   $"Your Team Garden Group",
+                   $"Garden Group",
             IsBodyHtml = true,
         };
         mailMessage.To.Add(email);
@@ -79,6 +80,7 @@ public class LoginService
         User user = userDAO.FindUserByUsername(username);
         if (user != null)
         {
+            loggedUser = user;
             return user.VerifyPassword(password);
         }
 
@@ -99,6 +101,11 @@ public class LoginService
         }
 
         return false;
+    }
+
+    public User returnUser()
+    {
+        return loggedUser;
     }
 
 }

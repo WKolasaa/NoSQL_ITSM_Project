@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,27 +36,28 @@ namespace IncidentManagementApplication.pages
         {
             InitializeComponent();
             userService = new UserService();
+            this.DataContext = this;
             ticketService = new TicketService();
+            _loggedUser = LoggedUser.GetInstance();
             prepareView();
         }
 
         private void prepareView()
         {
-            //if (_loggedUser.GetUser().Role == Role.RegularEmployee)
-            if(false)
+            if (_loggedUser.GetUser().Role == Role.RegularEmployee)
             {
                 btAdd.Visibility = Visibility.Hidden;
                 btRemove.Visibility = Visibility.Hidden;
                 btUpdate.Visibility = Visibility.Hidden;
-                cbEmployee.IsEditable = false;
-                cbEmployee.DataContext = _loggedUser.GetUser();
+                cbEmployee.Items.Add(_loggedUser.GetUser().username);
+                cbEmployee.SelectedIndex = 0;
+                cbEmployee.IsEnabled = false;
             }
             else
             {
                 btAdd.Visibility = Visibility.Visible;
                 btRemove.Visibility = Visibility.Visible;
                 btUpdate.Visibility = Visibility.Visible;
-                cbEmployee.IsEditable = true;
                 foreach (var User in userService.getAllUsers())
                 {
                     cbEmployee.Items.Add(User.username);
@@ -70,25 +73,20 @@ namespace IncidentManagementApplication.pages
 
         private void importDataToListView()
         {
-            lvTickets.Items.Clear();
+            //lvTickets.Items.Clear();
 
             List<Ticket> tickets = ticketService.getTicketsForUser(currentUser);
 
-            foreach (var ticket in tickets)
-            {
-                ListViewItem li = new ListViewItem();
-                li.Tag = ticket;
-            }
+            List<Ticket> sortedList = tickets.OrderByDescending(Severity => Severity.Severity).ToList(); // additional individual functionality
 
-
+            lvTickets.ItemsSource = sortedList;
         }
 
         private void lvTickets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvTickets.SelectedItems.Count > 0)
             {
-                ListViewItem listViewItem = (ListViewItem)lvTickets.SelectedItems[0];
-                currentTicket = (Ticket)listViewItem.Tag;
+                currentTicket = (Ticket)lvTickets.SelectedItems[0];
                 txtType.Text = currentTicket.getIncident().getType().ToString();
                 txtReporter.Text = currentTicket.getIncident().getReporter();
                 txtDescription.Text = currentTicket.getIncident().getDesc();

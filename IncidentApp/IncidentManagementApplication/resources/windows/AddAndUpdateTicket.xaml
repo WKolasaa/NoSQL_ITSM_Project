@@ -6,25 +6,46 @@
         xmlns:local="clr-namespace:IncidentManagementApplication.resources.windows"
         mc:Ignorable="d"
         Title="AddAndUpdateTicket" Height="450" Width="800">
-    <Grid Height="434" VerticalAlignment="Top">
-        <Label Content="ID" HorizontalAlignment="Left" Margin="133,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.315,0.024" FontSize="18"/>
-        <Label Content="Severity" HorizontalAlignment="Left" Margin="133,54,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Status" HorizontalAlignment="Left" Margin="133,104,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Date Created" HorizontalAlignment="Left" Margin="133,154,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Date Updated" HorizontalAlignment="Left" Margin="133,204,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Incident Type" HorizontalAlignment="Left" Margin="133,254,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Reporter" HorizontalAlignment="Left" Margin="133,304,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Description" HorizontalAlignment="Left" Margin="133,354,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="txtID" Margin="394,4,286,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" FontSize="18"/>
-        <ComboBox x:Name="cbSeverity" HorizontalAlignment="Left" Margin="394,54,0,0" VerticalAlignment="Top" Width="120" FontSize="18"/>
-        <ComboBox x:Name="cbStatus" HorizontalAlignment="Left" Margin="394,104,0,0" VerticalAlignment="Top" Width="120" FontSize="18"/>
-        <DatePicker x:Name="dpCreated" HorizontalAlignment="Left" Margin="394,154,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <DatePicker x:Name="dpUpdated" HorizontalAlignment="Left" Margin="394,0,0,0" VerticalAlignment="Center" FontSize="18"/>
-        <ComboBox x:Name="cbType" HorizontalAlignment="Left" Margin="394,254,0,0" VerticalAlignment="Top" Width="120" FontSize="18"/>
-        <ComboBox x:Name="cbReporter" HorizontalAlignment="Left" Margin="394,304,0,0" VerticalAlignment="Top" Width="120" FontSize="18"/>
-        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Margin="394,354,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="366" FontSize="18"/>
-        <Button x:Name="btAddUpdate" Content="Add" HorizontalAlignment="Left" Margin="228,400,0,0" VerticalAlignment="Top" FontSize="18" Click="btAddUpdate_Click"/>
-        <Button x:Name="cbCancel" Content="Cancel" HorizontalAlignment="Left" Margin="382,400,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.736,0.595" Click="cbCancel_Click"/>
+    <Grid Height="434" VerticalAlignment="Top" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Labels -->
+        <Label Grid.Row="0" Grid.Column="0" Content="ID" FontSize="18"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Severity" FontSize="18"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Status" FontSize="18"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Date Created" FontSize="18"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Date Updated" FontSize="18"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Incident Type" FontSize="18"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Reporter" FontSize="18"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="Description" FontSize="18"/>
+
+        <!-- Input Controls -->
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtID" FontSize="18" IsEnabled="False"/>
+        <ComboBox Grid.Row="1" x:Name="cbSeverity" FontSize="18" Grid.ColumnSpan="2" Margin="121,0,0,34" Grid.RowSpan="2"/>
+        <ComboBox Grid.Row="2" x:Name="cbStatus" FontSize="18" Margin="121,0,0,34" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" x:Name="dpCreated" FontSize="18"/>
+        <DatePicker Grid.Row="4" Grid.Column="1" x:Name="dpUpdated" FontSize="18"/>
+        <ComboBox Grid.Row="5" x:Name="cbType" FontSize="18" Grid.ColumnSpan="2" Margin="121,0,0,34" Grid.RowSpan="2"/>
+        <ComboBox Grid.Row="6" x:Name="cbReporter" FontSize="18" Grid.ColumnSpan="2" Margin="121,0,0,34" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="7" x:Name="txtDescription" TextWrapping="Wrap" FontSize="18" Grid.ColumnSpan="2" Margin="121,0,0,27" Grid.RowSpan="2"/>
+
+        <!-- Buttons -->
+        <Button Grid.Row="8" Grid.Column="0" x:Name="btAddUpdate" Content="Add" FontSize="18" Click="btAddUpdate_Click"/>
+        <Button Grid.Row="8" x:Name="cbCancel" Content="Cancel" FontSize="18" Click="cbCancel_Click" Margin="121,0,0,0" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

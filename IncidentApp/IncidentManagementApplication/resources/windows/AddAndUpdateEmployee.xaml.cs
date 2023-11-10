@@ -42,6 +42,7 @@ namespace IncidentManagementApplication.resources.windows
             if (type == "add")
             {
                 btAddAndUpdate.Content = "Add";
+                txtID.Text = userService.getNewID().ToString();
             }
             else if (type == "update")
             {
@@ -70,11 +71,20 @@ namespace IncidentManagementApplication.resources.windows
                 if (checkBoxes())
                 {
                     if (type == "add")
+                    {
                         userService.CreateUser(txtUserName.Text, txtFirstName.Text, txtLastName.Text, txtEmail.Text,
                             (Location)cbLocation.SelectedItem, txtPassword.Password, int.Parse(txtID.Text),
                             (Role)cbRole.SelectedItem);
-                    //else
-                    //updateEmployee();
+                        MessageBox.Show("User added");
+                    }
+
+                    else
+                    {
+                        userService.updateUser(getUser());
+                        MessageBox.Show("User updated");
+                    }
+                    
+                    this.Close();
                 }
                 else
                 {
@@ -98,6 +108,13 @@ namespace IncidentManagementApplication.resources.windows
                 return true;
             else
                 return false;
+        }
+
+        private User getUser()
+        {
+                       return new User(txtUserName.Text, txtFirstName.Text, txtLastName.Text, txtEmail.Text,
+                                          (Location)cbLocation.SelectedItem, txtPassword.Password, int.Parse(txtID.Text),
+                                                         (Role)cbRole.SelectedItem);
         }
     }
 }

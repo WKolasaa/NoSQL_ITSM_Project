@@ -50,6 +50,7 @@ namespace IncidentManagementApplication.resources.windows
             if (type == "Add")
             {
                 btAddUpdate.Content = "Add";
+                txtID.Text = ticketService.getLastTicketID()+1.ToString();
             }
             else if (type == "Update")
             {
@@ -72,21 +73,32 @@ namespace IncidentManagementApplication.resources.windows
 
         private void btAddUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (type == "Add")
+            try
             {
-                Ticket ticket = createTicket();
-                ticketService.createNewTicket(ticket);
+                if (type == "Add")
+                {
+                    Ticket ticket = createTicket();
+                    ticketService.createNewTicket(ticket);
+                    MessageBox.Show("Ticket added");
+                }
+                else if (type == "Update")
+                {
+                    Ticket ticket = createTicket();
+                    ticketService.updateTicket(ticket);
+                    MessageBox.Show("Ticket updated");
+                }
+
+                this.Close();
             }
-            else if (type == "Update")
+            catch (Exception ex)
             {
-                Ticket ticket = createTicket();
-                //ticketService.updateTicket(ticket);
-            }   
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void cbCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private Ticket createTicket()

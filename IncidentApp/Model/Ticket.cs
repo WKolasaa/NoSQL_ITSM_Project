@@ -9,12 +9,12 @@ namespace Model
     public class Ticket
     {
         // Ticket - Ignas
-        private int Id;
-        private Severity Severity;
-        private Status Status;
-        private DateTime DateCreated;
-        private DateTime DateUpdated;
-        private Incident Incident;
+        public int Id { get; private set; }
+        public Severity Severity { get; private set; }
+        public Status Status { get; private set; }
+        public DateTime DateCreated { get; private set; }
+        public DateTime DateUpdated { get; private set; }
+        public Incident Incident { get; private set; }
 
         public Ticket(int id, int severity, int status, DateTime dateCreated, DateTime dateUpdated, Incident incident)
         {

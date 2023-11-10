@@ -50,7 +50,8 @@ namespace IncidentManagementApplication.pages
         private void btAdd_Click(object sender, RoutedEventArgs e)
         {
             AddAndUpdateEmployee addAndUpdateEmployee = new AddAndUpdateEmployee("add", null);
-            addAndUpdateEmployee.Show();
+            addAndUpdateEmployee.ShowDialog();
+            importEmployees();
         }
 
         private void btUpdate_Click(object sender, RoutedEventArgs e)
@@ -58,7 +59,8 @@ namespace IncidentManagementApplication.pages
             if (selectedUser != null)
             {
                 AddAndUpdateEmployee addAndUpdateEmployee = new AddAndUpdateEmployee("update", selectedUser);
-                addAndUpdateEmployee.Show();
+                addAndUpdateEmployee.ShowDialog();
+                importEmployees();
             }
             else
             {
@@ -73,6 +75,7 @@ namespace IncidentManagementApplication.pages
                 if (selectedUser != null)
                 {
                     userServices.removeUser(selectedUser.employeeId);
+                    MessageBox.Show("User removed");
                     importEmployees();
                 }
                 else

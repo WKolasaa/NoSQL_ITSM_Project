@@ -6,25 +6,46 @@
         xmlns:local="clr-namespace:IncidentManagementApplication.resources.windows"
         mc:Ignorable="d"
         Title="AddAndUpdateEmployee" Height="450" Width="800">
-    <Grid>
-        <Label Content="Employee ID:" HorizontalAlignment="Left" Margin="131,3,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="131,303,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="First Name:" HorizontalAlignment="Left" Margin="131,53,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Last Name:" HorizontalAlignment="Left" Margin="131,103,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Email:" HorizontalAlignment="Left" Margin="131,153,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Password:" HorizontalAlignment="Left" Margin="131,203,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Location:" HorizontalAlignment="Left" Margin="131,253,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Role:" HorizontalAlignment="Left" Margin="131,353,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="400,3,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" FontSize="18"/>
-        <TextBox x:Name="txtFirstName" HorizontalAlignment="Left" Margin="400,53,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" FontSize="18"/>
-        <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Margin="400,103,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" FontSize="18"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="400,153,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" FontSize="18"/>
-        <TextBox x:Name="txtUserName" HorizontalAlignment="Left" Margin="400,303,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" FontSize="18"/>
-        <ComboBox x:Name="cbLocation" HorizontalAlignment="Left" Margin="400,253,0,0" VerticalAlignment="Top" Width="208" FontSize="18"/>
-        <ComboBox x:Name="cbRole" HorizontalAlignment="Left" Margin="400,355,0,0" VerticalAlignment="Top" Width="208" FontSize="18"/>
-        <Button x:Name="btAddAndUpdate" Content="Add" HorizontalAlignment="Left" Margin="242,397,0,0" VerticalAlignment="Top" FontSize="18" Click="btAddAndUpdate_Click"/>
-        <Button x:Name="btCancel" Content="Cancel" HorizontalAlignment="Left" Margin="419,397,0,0" VerticalAlignment="Top" FontSize="18" Click="btCancel_Click"/>
-        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="400,203,0,0" VerticalAlignment="Top" Width="208" FontSize="18"/>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Labels -->
+        <Label Grid.Row="0" Grid.Column="0" Content="Employee ID:" FontSize="18"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="First Name:" FontSize="18"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Last Name:" FontSize="18"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Email:" FontSize="18"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Password:" FontSize="18"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Location:" FontSize="18"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Username:" FontSize="18"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="Role:" FontSize="18"/>
+
+        <!-- Input Controls -->
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtID" FontSize="18" IsEnabled="False"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtFirstName" FontSize="18"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtLastName" FontSize="18"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtEmail" FontSize="18"/>
+        <PasswordBox Grid.Row="4" Grid.Column="1" x:Name="txtPassword" FontSize="18"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" x:Name="cbLocation" FontSize="18"/>
+        <TextBox Grid.Row="6" Grid.Column="1" x:Name="txtUserName" FontSize="18"/>
+        <ComboBox Grid.Row="7" Grid.Column="1" x:Name="cbRole" FontSize="18"/>
+
+        <!-- Buttons -->
+        <Button Grid.Row="8" Grid.Column="0" x:Name="btAddAndUpdate" Content="Add" FontSize="18" Click="btAddAndUpdate_Click"/>
+        <Button Grid.Row="8" Grid.Column="1" x:Name="btCancel" Content="Cancel" FontSize="18" Click="btCancel_Click"/>
     </Grid>
 </Window>

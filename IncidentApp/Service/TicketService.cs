@@ -60,14 +60,21 @@ namespace Service
             return amount;
         }
 
+        // Wojtek
+
         public List<Ticket> getTicketsForUser(string username)
         {
-            return ticketDao.getTicketsForUser(username);
+            return ticketDao.GetTicketsForUser(username);
         }
 
         public void removeTicket(int id)
         {
             ticketDao.removeTicket(id);
+        }
+
+        public void updateTicket(Ticket ticket)
+        {
+            ticketDao.updateTicket(ticket);
         }
     }
 }

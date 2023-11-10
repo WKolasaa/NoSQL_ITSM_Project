@@ -6,6 +6,7 @@ namespace Model;
 
 public class User
 {
+    // Salman
 
         [BsonElement("firstName")]
         public string firstName { get; private set; }
@@ -58,7 +59,4 @@ public class User
         {
             
         }
-
-
-
 }

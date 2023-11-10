@@ -7,6 +7,7 @@ namespace DAL;
 
 public class UserDAO:DAO
 {
+    // Salman
 
     public void StorePasswordResetToken(string email, string resetToken)
     {
@@ -103,4 +104,12 @@ public class UserDAO:DAO
         usersCollection.DeleteOne(filter);
     }
 
+    public void updateUser(User user)
+    {
+        var usersCollection = GetUserCollection();
+        var filter = Builders<User>.Filter.Eq("employeeId", user.employeeId);
+        var update = Builders<User>.Update.Set("firstName", user.firstName).Set("lastName", user.lastName).Set("email", user.email).Set("Location", user.Location).Set("username", user.username).Set("password", user.password).Set("Role", user.Role);
+        usersCollection.UpdateOne(filter, update);
+    }
 }
+

@@ -21,12 +21,22 @@ namespace IncidentManagementApplication.resources.frames
     public partial class NavigationFrame : Page
     {
         MainWindow currentWindow;
+        LoggedUser _loggedUser;
 
         public NavigationFrame()
         {
             InitializeComponent();
+            _loggedUser = LoggedUser.GetInstance();
+            if (_loggedUser.GetUser().Role == Model.Role.RegularEmployee)
+            {
+                btnCreateEmployee.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnCreateEmployee.Visibility = Visibility.Visible;
+            }
             this.currentWindow = GetCurrentWindow();
-
+            
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
