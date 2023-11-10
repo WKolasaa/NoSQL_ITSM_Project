@@ -3,7 +3,6 @@ using Model;
 using Service;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,21 +18,18 @@ using System.Windows.Shapes;
 
 namespace IncidentManagementApplication.pages
 {
-    
+    /// <summary>
+    /// Interaction logic for DashboardPage.xaml
+    /// </summary>
     public partial class DashboardPage : Page
     {
         TicketService service = new TicketService();
-        ObservableCollection<Ticket> tickets;
+        int counter = 1;
         public DashboardPage()
         {
-            InitializeComponent();  
+            InitializeComponent();
             TicketsList.Visibility = Visibility.Hidden;
-            //IncidentCalculation();
-
-            string employeeName = "Igmas";
-            List<Ticket> tickets = service.getTicketsByEmployeeName(employeeName);
-            TicketsList.ItemsSource = tickets;
-            lblUnresolved.Content = tickets.Count;
+            IncidentCalculation();
         }
 
         public void IncidentCalculation()
