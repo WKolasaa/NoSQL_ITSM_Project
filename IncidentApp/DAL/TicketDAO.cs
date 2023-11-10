@@ -3,6 +3,8 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,18 +35,18 @@ namespace DAL
 
         private BsonDocument convertTicketToBsonDocument(Ticket ticket)
         {
-            Incident incident = ticket.getIncident();
+            Incident incident = ticket.Incident;
             var document = new BsonDocument {
-                { "_id", ticket.getID() },
-                { "severity", ticket.getSeverity() },
-                { "status", ticket.getStatus() },
-                { "dateCreated", ticket.getDateCreated().ToString("f") },
-                { "dateUpdated", ticket.getDateUpdated().ToString("f") },
+                { "_id", ticket.Id },
+                { "severity", ticket.Severity },
+                { "status", ticket.Status },
+                { "dateCreated", ticket.DateCreated.ToString("f") },
+                { "dateUpdated", ticket.DateUpdated.ToString("f") },
                 { "incident", new BsonDocument {
-                    {"_id", incident.getID() },
-                    {"type", incident.getType() },
-                    {"reporter", incident.getReporter() },
-                    {"description", incident.getDesc() }
+                    {"_id", incident.Id },
+                    {"type", incident.Type },
+                    {"reporter", incident.Reporter },
+                    {"description", incident.Description }
                     }
                 }
             };
@@ -66,6 +68,43 @@ namespace DAL
             throw new Exception();
         }
 
+        // Get tickets - Ignas
+        public List<Ticket> getTickets()
+        {
+            List<Ticket> tickets = new List<Ticket>();
+            var filter = Builders<BsonDocument>.Filter.Empty;
+            var result = ticketCollection.Find(filter).ToList();
+
+            foreach (var document in result)
+            {
+                tickets.Add(convertBsonDocumentToTicket(document));
+            }
+            return tickets;
+        }
+
+        public List<Ticket> getNotClosedTickets()
+        {
+            List<Ticket> tickets = new List<Ticket>();
+            var filter = Builders<BsonDocument>.Filter.Ne("status", Status.ForceClosed);
+            var result = ticketCollection.Find(filter).ToList();
+
+            foreach (var document in result)
+            {
+                tickets.Add(convertBsonDocumentToTicket(document));
+            }
+            return tickets;
+        }
+
+        // Close ticket - Ignas
+        public void closeTicket(Ticket ticket)
+        {
+            var filt = Builders<BsonDocument>.Filter.Eq("_id", ticket.Id);
+            var upd = Builders<BsonDocument>.Update.Set("status", 1);
+
+            var result = ticketCollection.UpdateOne(filt, upd);
+        }
+
+        // get amount of tickets - Rienat
         public int getTicketsCount()
         {
             int ticketCount = (int)ticketCollection.CountDocuments(new BsonDocument());
@@ -91,6 +130,17 @@ namespace DAL
             var filter = Builders<BsonDocument>.Filter.Eq("status", Status.ForceClosed);
             int closedTicketCount = (int)ticketCollection.CountDocuments(filter);
             return closedTicketCount;
+        }
+
+        // BsonDoc convertion to Ticket class - Wojciech, taken from unfinished build
+        private Ticket convertBsonDocumentToTicket(BsonDocument document)
+        {
+            Incident incident = new Incident(document["incident"]["_id"].ToInt32(), document["incident"]["type"].ToInt32(), document["incident"]["reporter"].ToString(), document["incident"]["description"].ToString());
+            DateTime dateCreate = DateTime.Parse(document["dateCreated"].AsString); // changed from the original to better parsing for DateTime
+            DateTime dateUpdate = DateTime.Parse(document["dateUpdated"].AsString); 
+            
+            Ticket ticket = new Ticket(document["_id"].ToInt32(), document["severity"].ToInt32(), document["status"].ToInt32(), dateCreate, dateUpdate, incident);
+            return ticket;
         }
     }
 }

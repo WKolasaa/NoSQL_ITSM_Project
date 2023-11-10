@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace IncidentManagementApplication.pages
+namespace IncidentManagementApplication.resources.pages
 {
     /// <summary>
     /// Interaction logic for TicketsPage.xaml

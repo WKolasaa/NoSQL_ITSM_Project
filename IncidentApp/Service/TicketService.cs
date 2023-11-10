@@ -30,7 +30,18 @@ namespace Service
             ticketDao.createNewTicket(ticket);
         }
 
+        // Get tickets - Ignas 
+        public List<Ticket> getTickets()
+        {
+            return ticketDao.getTickets();
+        }
 
+        public List<Ticket> getNotClosedTickets()
+        {
+            return ticketDao.getNotClosedTickets();
+        }
+
+        // Dashboard display - Rienat
         public int getTicketsAmount()
         {
             int amount = 0;
@@ -57,6 +68,11 @@ namespace Service
             int amount = 0;
             amount = ticketDao.getClosedTicketCount();
             return amount;
+        }
+
+        public void closeTicket(Ticket selectedItem)
+        {
+            ticketDao.closeTicket(selectedItem);
         }
     }
 }

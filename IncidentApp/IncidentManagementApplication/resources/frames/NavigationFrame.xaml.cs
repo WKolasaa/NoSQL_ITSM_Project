@@ -37,12 +37,12 @@ namespace IncidentManagementApplication.resources.frames
         // Ticket create - Ignas
         private void btnCreateTicket_Click(object sender, RoutedEventArgs e)
         {
-            currentWindow.frameMain.Source = new Uri("../pages/TicketPage.xaml", UriKind.Relative);
+            currentWindow.frameMain.Source = new Uri("../pages/TicketsPage.xaml", UriKind.Relative);
         }
 
         private void btnViewTickets_Click(object sender, RoutedEventArgs e)
         {
-            currentWindow.frameMain.Source = new Uri("../pages/TicketsPage.xaml", UriKind.Relative);
+            currentWindow.frameMain.Source = new Uri("../pages/TicketsOverviewPage.xaml", UriKind.Relative);
         }
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
