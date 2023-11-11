@@ -1,0 +1,51 @@
+﻿<Window x:Class="IncidentManagementApplication.resources.windows.AddAndUpdateEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IncidentManagementApplication.resources.windows"
+        mc:Ignorable="d"
+        Title="AddAndUpdateEmployee" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Labels -->
+        <Label Grid.Row="0" Grid.Column="0" Content="Employee ID:" FontSize="18"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="First Name:" FontSize="18"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Last Name:" FontSize="18"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Email:" FontSize="18"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Password:" FontSize="18"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Location:" FontSize="18"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Username:" FontSize="18"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="Role:" FontSize="18"/>
+
+        <!-- Input Controls -->
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtID" FontSize="18" IsEnabled="False"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtFirstName" FontSize="18"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtLastName" FontSize="18"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtEmail" FontSize="18"/>
+        <PasswordBox Grid.Row="4" Grid.Column="1" x:Name="txtPassword" FontSize="18"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" x:Name="cbLocation" FontSize="18"/>
+        <TextBox Grid.Row="6" Grid.Column="1" x:Name="txtUserName" FontSize="18"/>
+        <ComboBox Grid.Row="7" Grid.Column="1" x:Name="cbRole" FontSize="18"/>
+
+        <!-- Buttons -->
+        <Button Grid.Row="8" Grid.Column="0" x:Name="btAddAndUpdate" Content="Add" FontSize="18" Click="btAddAndUpdate_Click"/>
+        <Button Grid.Row="8" Grid.Column="1" x:Name="btCancel" Content="Cancel" FontSize="18" Click="btCancel_Click"/>
+    </Grid>
+</Window>

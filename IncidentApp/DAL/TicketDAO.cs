@@ -132,15 +132,47 @@ namespace DAL
             return closedTicketCount;
         }
 
-        // BsonDoc convertion to Ticket class - Wojciech, taken from unfinished build
+        // Wojtek
+        public List<Ticket> GetTicketsForUser(string reporter)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("incident.reporter", reporter);
+            var bsonDocuments = ticketCollection.Find(filter).ToList();
+
+            var matchingTickets = bsonDocuments.Select(doc => convertBsonDocumentToTicket(doc)).ToList();
+            return matchingTickets;
+        }
+
         private Ticket convertBsonDocumentToTicket(BsonDocument document)
         {
-            Incident incident = new Incident(document["incident"]["_id"].ToInt32(), document["incident"]["type"].ToInt32(), document["incident"]["reporter"].ToString(), document["incident"]["description"].ToString());
             DateTime dateCreate = DateTime.Parse(document["dateCreated"].ToString()); // changed from the original to better parsing for DateTime
-            DateTime dateUpdate = DateTime.Parse(document["dateUpdated"].ToString()); 
+            DateTime dateUpdate = DateTime.Parse(document["dateUpdated"].ToString());
+            Incident incident = new Incident(
+                document["incident"]["_id"].ToInt32(), 
+                document["incident"]["type"].ToInt32(), 
+                document["incident"]["reporter"].ToString(), 
+                document["incident"]["description"].ToString());
             
-            Ticket ticket = new Ticket(document["_id"].ToInt32(), document["severity"].ToInt32(), document["status"].ToInt32(), dateCreate, dateUpdate, incident);
+            Ticket ticket = new Ticket(
+                document["_id"].ToInt32(), 
+                document["severity"].ToInt32(), 
+                document["status"].ToInt32(), 
+                dateCreate, 
+                dateUpdate, 
+                incident);
             return ticket;
+        }
+
+        public void removeTicket(int id)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", id);
+            ticketCollection.DeleteOne(filter);
+        }
+
+        public void updateTicket(Ticket ticket)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", ticket.Id);
+            var update = Builders<BsonDocument>.Update.Set("severity", ticket.Severity).Set("status", ticket.Status).Set("dateUpdated", ticket.DateUpdated);
+            ticketCollection.UpdateOne(filter, update);
         }
     }
 }

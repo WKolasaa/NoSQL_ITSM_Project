@@ -30,47 +30,61 @@ namespace IncidentManagementApplication.resources.windows
 
         private void Button_ResetPassword(object sender, RoutedEventArgs e)
         {
-            email = txtEmail.Text;
+            try
+            {
+                email = txtEmail.Text;
 
-            resetToken = loginService.ResetUserPassword(email);
+                resetToken = loginService.ResetUserPassword(email);
 
-            MessageBox.Show("A token has been sent to your email address.");
+                MessageBox.Show("A token has been sent to your email address.");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
 
         }
 
         private void Button_ConfirmReset(object sender, RoutedEventArgs e)
         {
-            resetToken = txtToken.Text;
-            string newPassword = txtNewPassword.Password;
-            string confirmedPassword = txtConfirmPassword.Password;
-            if (newPassword != confirmedPassword)
+            try
             {
-                MessageBox.Show("Passwords do not match. Please enter matching passwords.");
-                return;
-            }
-
-           
-            bool tokenVerified = loginService.VerifyResetToken(email, resetToken);
-
-            if (tokenVerified)
-            {
-                
-                bool passwordUpdated = loginService.ResetUserPassword(email, newPassword, resetToken);
-
-                if (passwordUpdated)
+                resetToken = txtToken.Text;
+                string newPassword = txtNewPassword.Password;
+                string confirmedPassword = txtConfirmPassword.Password;
+                if (newPassword != confirmedPassword)
                 {
-                    MessageBox.Show("Password reset successfully.");
-                    
+                    MessageBox.Show("Passwords do not match. Please enter matching passwords.");
+                    return;
+                }
+
+
+                bool tokenVerified = loginService.VerifyResetToken(email, resetToken);
+
+                if (tokenVerified)
+                {
+
+                    bool passwordUpdated = loginService.ResetUserPassword(email, newPassword, resetToken);
+
+                    if (passwordUpdated)
+                    {
+                        MessageBox.Show("Password reset successfully.");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Password reset failed. Please try again later.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Password reset failed. Please try again later.");
+
+                    MessageBox.Show("Invalid or expired token. Please request a new token.");
                 }
             }
-            else
+            catch (Exception exception)
             {
-               
-                MessageBox.Show("Invalid or expired token. Please request a new token.");
+                MessageBox.Show(exception.Message);
             }
         }
 

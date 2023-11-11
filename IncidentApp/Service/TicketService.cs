@@ -14,9 +14,8 @@ namespace Service
         // TicketDao setup - Ignas
         private TicketDAO ticketDao;
 
-        public TicketService() { 
+        public TicketService() {
             this.ticketDao = new TicketDAO();
-          
         }
 
         // Ticket creation - Ignas
@@ -39,6 +38,11 @@ namespace Service
         public List<Ticket> getNotClosedTickets()
         {
             return ticketDao.getNotClosedTickets();
+        }
+
+        public void closeTicket(Ticket selectedItem)
+        {
+            ticketDao.closeTicket(selectedItem);
         }
 
         // Dashboard display - Rienat
@@ -70,9 +74,20 @@ namespace Service
             return amount;
         }
 
-        public void closeTicket(Ticket selectedItem)
+        // Wojtek
+        public List<Ticket> getTicketsForUser(string username)
         {
-            ticketDao.closeTicket(selectedItem);
+            return ticketDao.GetTicketsForUser(username);
+        }
+
+        public void removeTicket(int id)
+        {
+            ticketDao.removeTicket(id);
+        }
+
+        public void updateTicket(Ticket ticket)
+        {
+            ticketDao.updateTicket(ticket);
         }
     }
 }

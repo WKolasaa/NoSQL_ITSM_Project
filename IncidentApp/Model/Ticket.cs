@@ -1,6 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +10,10 @@ namespace Model
     {
         // Ticket - Ignas
         private int _id;
-        public int Id 
-        { 
-            get {  return _id; } 
-            set {  _id = value; }
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
         }
 
         private Severity _severity;
@@ -40,18 +38,20 @@ namespace Model
         }
 
         private DateTime _dateUpdated;
-        public DateTime DateUpdated 
-        { 
-            get { return _dateUpdated; } 
+        public DateTime DateUpdated
+        {
+            get { return _dateUpdated; }
             set { _dateUpdated = value; }
-        } 
+        }
 
         private Incident _incident;
-        public Incident Incident 
-        { 
-            get { return _incident; } 
+        public Incident Incident
+        {
+            get { return _incident; }
             set { _incident = value; }
         }
+
+        public Ticket() { }
 
         public Ticket(int id, int severity, int status, DateTime dateCreated, DateTime dateUpdated, Incident incident)
         {
