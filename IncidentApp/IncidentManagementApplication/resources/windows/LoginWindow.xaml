@@ -46,10 +46,10 @@
 
 
         <Label Content="Username:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelStyle}" HorizontalAlignment="Left" Height="29" Margin="15,0,0,0" Width="75" />
-        <TextBox x:Name="txtUsername" Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}" Margin="5,5,5,5" Text="exampleUser" />
+        <TextBox x:Name="txtUsername" Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}" Margin="5,5,5,5" />
 
         <Label Content="Password:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelStyle}" HorizontalAlignment="Left" Height="29" Margin="19,0,0,0" Width="71" />
-        <PasswordBox x:Name="passwordtxt" Grid.Column="1" Grid.Row="2" Style="{StaticResource PasswordBoxStyle}" Margin="5,5,5,5" Password="salmankanj1"/>
+        <PasswordBox x:Name="passwordtxt" Grid.Column="1" Grid.Row="2" Style="{StaticResource PasswordBoxStyle}" Margin="5,5,5,5" />
 
         <Button Content="Login" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonStyle}" Click="Button_Login" Margin="50,13,50,11" />
 
