@@ -89,5 +89,10 @@ namespace Service
         {
             ticketDao.updateTicket(ticket);
         }
+
+        public List<Ticket> getAllTicketsSortedBySeverity(string username) // additional individual functionality
+        {
+            return ticketDao.GetTicketsForUser(username).OrderByDescending(Severity => Severity.Severity).ToList();
+        }
     }
 }

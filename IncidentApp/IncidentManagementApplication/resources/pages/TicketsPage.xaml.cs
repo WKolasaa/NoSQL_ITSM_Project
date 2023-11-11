@@ -46,7 +46,6 @@ namespace IncidentManagementApplication.resources.pages
         {
             if (_loggedUser.GetUser().Role == Role.RegularEmployee)
             {
-                btAdd.Visibility = Visibility.Hidden;
                 btRemove.Visibility = Visibility.Hidden;
                 btUpdate.Visibility = Visibility.Hidden;
                 cbEmployee.Items.Add(_loggedUser.GetUser().username);
@@ -55,7 +54,6 @@ namespace IncidentManagementApplication.resources.pages
             }
             else
             {
-                btAdd.Visibility = Visibility.Visible;
                 btRemove.Visibility = Visibility.Visible;
                 btUpdate.Visibility = Visibility.Visible;
                 foreach (var User in userService.getAllUsers())
@@ -73,13 +71,9 @@ namespace IncidentManagementApplication.resources.pages
 
         private void importDataToListView()
         {
-            //lvTickets.Items.Clear();
+            List<Ticket> tickets = ticketService.getAllTicketsSortedBySeverity(currentUser);
 
-            List<Ticket> tickets = ticketService.getTicketsForUser(currentUser);
-
-            List<Ticket> sortedList = tickets.OrderByDescending(Severity => Severity.Severity).ToList(); // additional individual functionality
-
-            lvTickets.ItemsSource = sortedList;
+            lvTickets.ItemsSource = tickets;
         }
 
         private void lvTickets_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -110,6 +104,8 @@ namespace IncidentManagementApplication.resources.pages
         private void btRemove_Click(object sender, RoutedEventArgs e)
         {
             ticketService.removeTicket(currentTicket.Id);
+            MessageBox.Show("Ticket removed");
+            importDataToListView();
         }
     }
 }

@@ -41,8 +41,8 @@ namespace DAL
                 { "_id", ticket.Id },
                 { "severity", ticket.Severity },
                 { "status", ticket.Status },
-                { "dateCreated", ticket.DateCreated.ToString("f") },
-                { "dateUpdated", ticket.DateUpdated.ToString("f") },
+                { "dateCreated", ticket.DateCreated },
+                { "dateUpdated", ticket.DateUpdated },
                 { "incident", new BsonDocument {
                     {"_id", incident.Id },
                     {"type", incident.Type },
