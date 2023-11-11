@@ -13,19 +13,20 @@
         <Label x:Name="lblOpen" Content="" HorizontalAlignment="Left" Margin="36,95,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblClosed" Content="" HorizontalAlignment="Left" Margin="36,165,0,0" VerticalAlignment="Top"/>
         <Button x:Name="ListBtn" Content="SHOW LIST" HorizontalAlignment="Left" Margin="478,13,0,0" VerticalAlignment="Top" Width="98" Height="34" Background="#FF51DCD9" Click="ListBtn_Click"/>
-        <ListView x:Name="TicketsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,52,0,-1" Background="Wheat">
+        <ListView x:Name="TicketsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,52,0,0" Background="Wheat">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Severity" Width="150" DisplayMemberBinding="{Binding Severity}" />
+                    <GridViewColumn Header="Severity" Width="100" DisplayMemberBinding="{Binding Severity}" />
                     <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding Status}" />
                     <GridViewColumn Header="DateCreated" Width="150" DisplayMemberBinding="{Binding DateCreated}" />
                     <GridViewColumn Header="DateUpdated" Width="150" DisplayMemberBinding="{Binding DateUpdated}" />
-                    <GridViewColumn Header="Incident" Width="150" DisplayMemberBinding="{Binding Incident}" />
+                    <GridViewColumn Header="Description" Width="100" DisplayMemberBinding="{Binding Incident.Description}" />
                 </GridView>
             </ListView.View>
         </ListView>
         <Label x:Name="lblResolv" Content="" HorizontalAlignment="Left" Margin="36,232,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,0.732"/>
         <Button x:Name="ListHideBtn" Content="HIDE LIST" HorizontalAlignment="Left" Margin="375,13,0,0" VerticalAlignment="Top" Width="98" Height="34" Background="#FF51DCD9" Click="ListHideBtn_Click"/>
+        <TextBox x:Name="FilterBox"  HorizontalAlignment="Center" Margin="0,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" TextChanged="FilterBox_TextChanged"/>
     </Grid>
 </Page>
