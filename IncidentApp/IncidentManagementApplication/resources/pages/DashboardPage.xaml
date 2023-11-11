@@ -10,8 +10,8 @@
       Background="Wheat">
     <Grid>
         <Label x:Name="lbl1" Content="Dashboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="22"/>
-        <Label x:Name="lblUnresolved" Content="" HorizontalAlignment="Left" Margin="36,95,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblDeadline" Content="" HorizontalAlignment="Left" Margin="36,165,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblOpen" Content="" HorizontalAlignment="Left" Margin="36,95,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblClosed" Content="" HorizontalAlignment="Left" Margin="36,165,0,0" VerticalAlignment="Top"/>
         <Button x:Name="ListBtn" Content="SHOW LIST" HorizontalAlignment="Left" Margin="478,13,0,0" VerticalAlignment="Top" Width="98" Height="34" Background="#FF51DCD9" Click="ListBtn_Click"/>
         <ListView x:Name="TicketsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,52,0,-1" Background="Wheat">
             <ListView.View>
@@ -25,7 +25,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="lblNoResolv" Content="" HorizontalAlignment="Left" Margin="36,232,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,0.732"/>
+        <Label x:Name="lblResolv" Content="" HorizontalAlignment="Left" Margin="36,232,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,0.732"/>
         <Button x:Name="ListHideBtn" Content="HIDE LIST" HorizontalAlignment="Left" Margin="375,13,0,0" VerticalAlignment="Top" Width="98" Height="34" Background="#FF51DCD9" Click="ListHideBtn_Click"/>
     </Grid>
 </Page>

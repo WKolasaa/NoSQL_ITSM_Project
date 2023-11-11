@@ -44,7 +44,6 @@ namespace IncidentManagementApplication.pages
             
         }
 
-        
 
         public void IncidentCalculation()
         {
@@ -57,9 +56,9 @@ namespace IncidentManagementApplication.pages
             double resolvedPercentage = (double)resolved_amount / general_amount * 100;
             double closedPercentage = (double)closed_amount / general_amount * 100;
 
-            lblUnresolved.Content = $"Opened tickets: {openTicketPercentage:F2}%";
-            lblNoResolv.Content = $"Resolved tickets: {resolvedPercentage:F2}%";
-            lblDeadline.Content = $"Closed tickets: {closedPercentage:F2}%";
+            lblOpen.Content = $"Opened tickets: {openTicketPercentage:F2}%";
+            lblResolv.Content = $"Resolved tickets: {resolvedPercentage:F2}%";
+            lblClosed.Content = $"Closed tickets: {closedPercentage:F2}%";
         }
 
         public void FillTicketsList(string name)
@@ -71,12 +70,11 @@ namespace IncidentManagementApplication.pages
         private void ListBtn_Click(object sender, RoutedEventArgs e)
         {
             TicketsList.Visibility = Visibility.Visible;
-            lblDeadline.Visibility = Visibility.Hidden;
-            lblNoResolv.Visibility = Visibility.Hidden;
-            lblUnresolved.Visibility = Visibility.Hidden;
+            lblClosed.Visibility = Visibility.Hidden;
+            lblResolv.Visibility = Visibility.Hidden;
+            lblOpen.Visibility = Visibility.Hidden;
             ListHideBtn.Visibility = Visibility.Visible;
             ListBtn.Visibility = Visibility.Hidden;
-
 
         }
 
@@ -84,9 +82,9 @@ namespace IncidentManagementApplication.pages
         {
             ListBtn.Visibility = Visibility.Visible;
             TicketsList.Visibility = Visibility.Hidden;
-            lblDeadline.Visibility = Visibility.Visible;
-            lblNoResolv.Visibility = Visibility.Visible;
-            lblUnresolved.Visibility = Visibility.Visible;
+            lblClosed.Visibility = Visibility.Visible;
+            lblResolv.Visibility = Visibility.Visible;
+            lblOpen.Visibility = Visibility.Visible;
 
             if (ListBtn.Visibility == Visibility.Visible)
             {
