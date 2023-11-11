@@ -62,5 +62,12 @@ namespace Model
             DateUpdated = dateUpdated;
             Incident = incident;
         }
+
+        // Individual Functionality 2 - Archiving Database - Ignas
+        public override string ToString()
+        {
+            string ticketString = $"[id:{Id}/severity:{((int)Severity).ToString()}/status:{((int)Status).ToString()}/dateCreated:{DateCreated.ToString()}/dateUpdated:{DateUpdated.ToString()}/incident:({Incident.ToString()})]";
+            return ticketString;
+        }
     }
 }

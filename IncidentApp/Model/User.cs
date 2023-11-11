@@ -55,4 +55,11 @@ public class User
     }
 
     public User() { }
+
+    // Individual Functionality 2 - Archiving Database - Ignas
+    public override string ToString()
+    {
+        string userString = $"[id:{employeeId.ToString()}/firstName:{firstName}/lastName:{lastName}/email:{email}/location:{((int)Location).ToString()}/role:{((int)Role).ToString()}/username:{username}/password:{password}]";
+        return userString;
+    }
 }

@@ -43,5 +43,12 @@ namespace Model
             Reporter = reporter;
             Description = description;
         }
+
+        // Individual Functionality 2 - Archiving Database - Ignas
+        public override string ToString()
+        {
+            string incidentString = $"id:{Id.ToString()}|type:{((int)Type).ToString()}|reporter:{Reporter}|description:{Description}";
+            return incidentString;
+        }
     }
 }

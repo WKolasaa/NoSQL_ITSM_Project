@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +21,15 @@ namespace IncidentManagementApplication.resources.frames
     /// </summary>
     public partial class NavigationFrame : Page
     {
+        FileIOService fileIOService;
+
         MainWindow currentWindow;
         LoggedUser _loggedUser;
 
         public NavigationFrame()
         {
             InitializeComponent();
+            fileIOService = new FileIOService();
             _loggedUser = LoggedUser.GetInstance();
             if (_loggedUser.GetUser().Role == Model.Role.RegularEmployee)
             {
@@ -65,6 +69,12 @@ namespace IncidentManagementApplication.resources.frames
         private void btnCloseTickets_Click(object sender, RoutedEventArgs e)
         {
             currentWindow.frameMain.Source = new Uri("../pages/TicketsClosePage.xaml", UriKind.Relative);
+        }
+
+        // Individual Functionality 2 - Archiving Database - Ignas
+        private void btnDataBackup_Click(object sender, RoutedEventArgs e)
+        {
+            fileIOService.createBackup();
         }
 
         private MainWindow GetCurrentWindow()

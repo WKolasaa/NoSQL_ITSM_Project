@@ -26,7 +26,7 @@
                 </TextBlock>
             </Button>
         </StackPanel>
-        <StackPanel Orientation="Vertical">
+        <StackPanel x:Name="ServiceDeskGroup" Orientation="Vertical">
             <Button x:Name="btnCreateEmployee" Content="Create employee" 
                     VerticalAlignment="Top" 
                     Height="50" Width="100" Margin="0,30,0,0" 
@@ -40,6 +40,12 @@
                 <TextBlock TextWrapping="Wrap" TextAlignment="Center">
                     Close open tickets
                 </TextBlock>
+            </Button>
+            <Button x:Name="btnDataBackup" 
+                    Height="50" Width="100" Margin="0,70,0,0" 
+                    Background="SlateBlue"
+                    Click="btnDataBackup_Click">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center"><Run Text="Create data backup"/></TextBlock>
             </Button>
         </StackPanel>
     </StackPanel>
