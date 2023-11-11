@@ -23,7 +23,7 @@ namespace IncidentManagementApplication.pages
     public partial class DashboardPage : Page
     {
         TicketService service = new TicketService();
-        ObservableCollection<Ticket> tickets;
+        List<Ticket> tickets;
         private LoggedUser _loggedUser;
 
         public DashboardPage()
@@ -72,7 +72,7 @@ namespace IncidentManagementApplication.pages
 
         private void ListBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            tickets = service.getTicketsForUser(_loggedUser.GetLoggedUseruserName());
             TicketsList.Visibility = Visibility.Visible;
             lblClosed.Visibility = Visibility.Hidden;
             lblResolv.Visibility = Visibility.Hidden;
@@ -101,13 +101,8 @@ namespace IncidentManagementApplication.pages
 
         private void UpdateListView(List<Ticket> newTickets)
         {
-            ObservableCollection<Ticket> observableCollection = TicketsList.ItemsSource as ObservableCollection<Ticket>;
-            observableCollection?.Clear();
-
-            foreach (Ticket ticket in newTickets)
-            {
-                observableCollection?.Add(ticket);
-            }
+            TicketsList.ItemsSource = null;
+            TicketsList.ItemsSource = newTickets;
         }
 
         private void FilterBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -116,18 +111,30 @@ namespace IncidentManagementApplication.pages
 
             if (tickets != null)
             {
-                List<Ticket> filteredTickets = tickets
-                    .Where(ticket =>
-                        (ticket.Incident.Description.ToLower().Contains(filterText)) ||
-                        (ticket.Status.ToString().ToLower().Contains(filterText)) ||
-                        (ticket.Id.ToString().ToLower().Contains(filterText)) ||
-                        (ticket.Severity.ToString().ToLower().Contains(filterText))
-                    )
+                List<Ticket> filteredTickets = new List<Ticket>();
 
-                    .ToList();
+                foreach (var VARIABLE in tickets)
+                {
+                    if (VARIABLE.Incident.Description.ToLower().Contains(filterText))
+                    {
+                        filteredTickets.Add(VARIABLE);
+                    }
+                    else if (VARIABLE.Status.ToString().ToLower().Contains(filterText))
+                    {
+                        filteredTickets.Add(VARIABLE);
+                    }
+                    else if (VARIABLE.Id.ToString().ToLower().Contains(filterText))
+                    {
+                        filteredTickets.Add(VARIABLE);
+                    }
+                    else if (VARIABLE.Severity.ToString().ToLower().Contains(filterText))
+                    {
+                        filteredTickets.Add(VARIABLE);
+                    }
+                }
+
                 UpdateListView(filteredTickets);
             }
-           
         }
     }
 }
