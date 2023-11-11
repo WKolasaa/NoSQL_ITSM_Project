@@ -18,8 +18,7 @@ namespace IncidentManagementApplication
         public App()
         {
            
-           //Test test = new Test();
-
+           //Test test = new Test(); // for adding 100 users
         }
     }
 }

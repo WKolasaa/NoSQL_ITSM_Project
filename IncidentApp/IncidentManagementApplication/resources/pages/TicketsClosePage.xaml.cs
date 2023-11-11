@@ -19,14 +19,14 @@ using System.Windows.Shapes;
 namespace IncidentManagementApplication.pages
 {
     /// <summary>
-    /// Interaction logic for TicketsPage.xaml
+    /// Interaction logic for TicketsClosePage.xaml
     /// </summary>
-    public partial class TicketsOverviewPage : Page
+    public partial class TicketsClosePage : Page
     {
         private TicketService tService;
         public ObservableCollection<Ticket> Tickets { get; set; }
 
-        public TicketsOverviewPage()
+        public TicketsClosePage()
         {
             InitializeComponent();
             this.tService = new TicketService();

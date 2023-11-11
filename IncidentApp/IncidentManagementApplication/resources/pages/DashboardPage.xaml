@@ -16,9 +16,7 @@
         <ListView x:Name="TicketsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,52,0,-1" Background="Wheat">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Employee Name" DisplayMemberBinding="{Binding Incident.Reporter}" />
-                    <GridViewColumn Header="Ticket ID" DisplayMemberBinding="{Binding ID}" />
-                    <GridViewColumn Header="Severity" DisplayMemberBinding="{Binding Severity}" />
+                    <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>

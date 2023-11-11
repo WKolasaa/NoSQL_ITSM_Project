@@ -87,9 +87,9 @@ namespace IncidentManagementApplication.resources.pages
             if (lvTickets.SelectedItems.Count > 0)
             {
                 currentTicket = (Ticket)lvTickets.SelectedItems[0];
-                txtType.Text = currentTicket.getIncident().getType().ToString();
-                txtReporter.Text = currentTicket.getIncident().getReporter();
-                txtDescription.Text = currentTicket.getIncident().getDesc();
+                txtType.Text = currentTicket.Incident.Type.ToString();
+                txtReporter.Text = currentTicket.Incident.Reporter;
+                txtDescription.Text = currentTicket.Incident.Description;
             }
         }
 
@@ -109,7 +109,7 @@ namespace IncidentManagementApplication.resources.pages
 
         private void btRemove_Click(object sender, RoutedEventArgs e)
         {
-            ticketService.removeTicket(currentTicket.getID());
+            ticketService.removeTicket(currentTicket.Id);
         }
     }
 }
