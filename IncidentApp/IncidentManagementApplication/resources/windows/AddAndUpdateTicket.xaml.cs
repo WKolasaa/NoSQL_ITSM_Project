@@ -26,6 +26,7 @@ namespace IncidentManagementApplication.resources.windows
         private Ticket currentTicket;
         private UserService userService;
         private TicketService ticketService;
+        private LoggedUser _loggedUser;
 
         public AddAndUpdateTicket(string Type, Ticket ticket)
         {
@@ -34,23 +35,38 @@ namespace IncidentManagementApplication.resources.windows
             currentTicket = ticket;
             userService = new UserService();
             ticketService = new TicketService();
+            _loggedUser = LoggedUser.GetInstance();
             prepareView();
         }
 
         private void prepareView()
         {
             cbSeverity.ItemsSource = Enum.GetValues(typeof(Severity));
-            foreach (var User in userService.getAllUsers())
-            {
-                cbReporter.Items.Add(User.username);
-            }
             cbStatus.ItemsSource = Enum.GetValues(typeof(Status));
             cbType.ItemsSource = Enum.GetValues(typeof(IncidentType));
+
+            if (_loggedUser.GetUser().Role == Role.RegularEmployee)
+            {
+                cbReporter.Items.Add(_loggedUser.GetUser().username);
+                cbReporter.SelectedIndex = 0;
+                cbReporter.IsEnabled = false;
+                dpCreated.IsEnabled = false;
+                dpUpdated.IsEnabled = false;
+            }
+            else
+            {
+                foreach (var User in userService.getAllUsers())
+                {
+                    cbReporter.Items.Add(User.username);
+                }
+            }
 
             if (type == "Add")
             {
                 btAddUpdate.Content = "Add";
-                txtID.Text = ticketService.getLastTicketID()+1.ToString();
+                txtID.Text = (ticketService.getLastTicketID()+1).ToString();
+                dpCreated.SelectedDate = DateTime.Now;
+                dpUpdated.SelectedDate = DateTime.Now;
             }
             else if (type == "Update")
             {
@@ -68,7 +84,7 @@ namespace IncidentManagementApplication.resources.windows
             cbType.SelectedItem = currentTicket.Incident.Type;
             txtDescription.Text = currentTicket.Incident.Description;
             dpCreated.SelectedDate = currentTicket.DateCreated;
-            dpUpdated.SelectedDate = currentTicket.DateUpdated;
+            dpUpdated.SelectedDate = DateTime.Now;
         }
 
         private void btAddUpdate_Click(object sender, RoutedEventArgs e)
