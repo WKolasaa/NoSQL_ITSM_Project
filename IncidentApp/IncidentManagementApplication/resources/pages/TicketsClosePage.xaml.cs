@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using IncidentManagementApplication.resources.windows;
+using Model;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -45,12 +46,15 @@ namespace IncidentManagementApplication.pages
 
         public void btnCloseTicket_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItems = dataGridTickets.SelectedItems.Cast<Ticket>().ToList();
+            var selectedTickets = dataGridTickets.SelectedItems.Cast<Ticket>().ToList();
 
-            foreach (var selectedItem in selectedItems)
+            if(selectedTickets.Count > 0)
             {
-                tService.closeTicket(selectedItem);
-                Tickets.Remove(selectedItem);
+                foreach (var selectedTicket in selectedTickets)
+                {
+                    // Individual Functionality - Ticket Escalation/Closing - Ignas
+                    new TicketEscalation(Tickets, selectedTicket).Show();
+                }
             }
         }
     }
