@@ -26,8 +26,8 @@ public class LoginService
         return resetToken;
     }
 
-
-    private void SendPasswordEmailWithToken(string email, string resetToken) // additional individual functionality
+    // additional individual functionality 
+    private void SendPasswordEmailWithToken(string email, string resetToken)
     {
         var client = new SmtpClient("smtp.gmail.com", 587)
         {

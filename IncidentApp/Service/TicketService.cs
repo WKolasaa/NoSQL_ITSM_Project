@@ -2,7 +2,6 @@
 using Model;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +14,8 @@ namespace Service
         // TicketDao setup - Ignas
         private TicketDAO ticketDao;
 
-        public TicketService() { 
+        public TicketService() {
             this.ticketDao = new TicketDAO();
-          
         }
 
         // Ticket creation - Ignas
@@ -40,6 +38,11 @@ namespace Service
         public List<Ticket> getNotClosedTickets()
         {
             return ticketDao.getNotClosedTickets();
+        }
+
+        public void closeTicket(Ticket selectedItem)
+        {
+            ticketDao.closeTicket(selectedItem);
         }
 
         // Dashboard display - Rienat
@@ -72,7 +75,6 @@ namespace Service
         }
 
         // Wojtek
-
         public List<Ticket> getTicketsForUser(string username)
         {
             return ticketDao.GetTicketsForUser(username);
@@ -86,10 +88,6 @@ namespace Service
         public void updateTicket(Ticket ticket)
         {
             ticketDao.updateTicket(ticket);
-
-        public void closeTicket(Ticket selectedItem)
-        {
-            ticketDao.closeTicket(selectedItem);
         }
     }
 }

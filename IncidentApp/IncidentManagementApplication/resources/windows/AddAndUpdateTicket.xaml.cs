@@ -61,14 +61,14 @@ namespace IncidentManagementApplication.resources.windows
 
         private void importData()
         {
-            txtID.Text = currentTicket.getID().ToString();
-            cbSeverity.SelectedItem = currentTicket.getSeverity();
-            cbStatus.SelectedItem = currentTicket.getStatus();
-            cbReporter.SelectedItem = currentTicket.getIncident().getReporter();
-            cbType.SelectedItem = currentTicket.getIncident().getType();
-            txtDescription.Text = currentTicket.getIncident().getDesc();
-            dpCreated.SelectedDate = currentTicket.getDateCreated();
-            dpUpdated.SelectedDate = currentTicket.getDateUpdated();
+            txtID.Text = currentTicket.Id.ToString();
+            cbSeverity.SelectedItem = currentTicket.Severity;
+            cbStatus.SelectedItem = currentTicket.Status;
+            cbReporter.SelectedItem = currentTicket.Incident.Reporter;
+            cbType.SelectedItem = currentTicket.Incident.Type;
+            txtDescription.Text = currentTicket.Incident.Description;
+            dpCreated.SelectedDate = currentTicket.DateCreated;
+            dpUpdated.SelectedDate = currentTicket.DateUpdated;
         }
 
         private void btAddUpdate_Click(object sender, RoutedEventArgs e)

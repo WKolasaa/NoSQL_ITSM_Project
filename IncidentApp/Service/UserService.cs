@@ -6,7 +6,6 @@ namespace Service;
 public class UserService
 {
     // Salman
-
     private UserDAO _userDAO;
     public UserService()
     {
@@ -21,7 +20,6 @@ public class UserService
     }
 
     // Wojtek
-
     public List<User> getAllUsers()
     {
         return _userDAO.getAllUsers();
@@ -48,7 +46,6 @@ public class UserService
                 max = user.employeeId;
             }
         }
-
         return max + 1;
     }
 }
