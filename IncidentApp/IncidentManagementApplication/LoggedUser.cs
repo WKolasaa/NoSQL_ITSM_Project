@@ -34,5 +34,19 @@ namespace IncidentManagementApplication
         {
             loggedUser = user;
         }
+
+        public string GetLoggedUserName()
+        {
+            string name;
+            return name = $"{loggedUser.firstName} {loggedUser.lastName}";
+
+        }
+
+        public string GetLoggedUseruserName()
+        {
+            string username;
+            return username = $"{loggedUser.username}";
+
+        }
     }
 }

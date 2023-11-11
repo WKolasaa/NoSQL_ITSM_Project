@@ -24,17 +24,27 @@ namespace IncidentManagementApplication.pages
     {
         TicketService service = new TicketService();
         ObservableCollection<Ticket> tickets;
+        private LoggedUser _loggedUser;
+
         public DashboardPage()
         {
-            InitializeComponent();  
+            InitializeComponent();
+           
             TicketsList.Visibility = Visibility.Hidden;
-            //IncidentCalculation();
+            
 
-            string employeeName = "Igmas";
-            List<Ticket> tickets = service.getTicketsForUser(employeeName);
-            TicketsList.ItemsSource = tickets;
-            lblUnresolved.Content = tickets.Count;
+            _loggedUser = LoggedUser.GetInstance();
+            string name = _loggedUser.GetLoggedUserName();
+            string username = _loggedUser.GetLoggedUseruserName();
+            lbl1.Content = $"Dashboard \t {name}";
+
+            IncidentCalculation();
+            FillTicketsList(username);
+            
+            
         }
+
+        
 
         public void IncidentCalculation()
         {
@@ -52,14 +62,37 @@ namespace IncidentManagementApplication.pages
             lblDeadline.Content = $"Closed tickets: {closedPercentage:F2}%";
         }
 
+        public void FillTicketsList(string name)
+        {
+            List<Ticket> tickets = service.getTicketsForUser(name);
+            TicketsList.ItemsSource = tickets;
+        }
+
         private void ListBtn_Click(object sender, RoutedEventArgs e)
         {
             TicketsList.Visibility = Visibility.Visible;
             lblDeadline.Visibility = Visibility.Hidden;
             lblNoResolv.Visibility = Visibility.Hidden;
             lblUnresolved.Visibility = Visibility.Hidden;
+            ListHideBtn.Visibility = Visibility.Visible;
+            ListBtn.Visibility = Visibility.Hidden;
+
+
         }
 
-       
+        private void ListHideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ListBtn.Visibility = Visibility.Visible;
+            TicketsList.Visibility = Visibility.Hidden;
+            lblDeadline.Visibility = Visibility.Visible;
+            lblNoResolv.Visibility = Visibility.Visible;
+            lblUnresolved.Visibility = Visibility.Visible;
+
+            if (ListBtn.Visibility == Visibility.Visible)
+            {
+                ListHideBtn.Visibility = Visibility.Hidden;
+            }
+
+        }
     }
 }
