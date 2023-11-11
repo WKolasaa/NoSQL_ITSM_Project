@@ -30,18 +30,21 @@ namespace IncidentManagementApplication.pages
         {
             InitializeComponent();
            
+
             TicketsList.Visibility = Visibility.Hidden;
             
 
             _loggedUser = LoggedUser.GetInstance();
             string name = _loggedUser.GetLoggedUserName();
-            string username = _loggedUser.GetLoggedUseruserName();
-            lbl1.Content = $"Dashboard \t {name}";
+            
+            lbl1.Content = $"Dashboard {name}";
 
             IncidentCalculation();
+
+            string username = _loggedUser.GetLoggedUseruserName();
             FillTicketsList(username);
-            
-            
+            FilterBox.TextChanged += FilterBox_TextChanged;
+
         }
 
 
@@ -69,6 +72,7 @@ namespace IncidentManagementApplication.pages
 
         private void ListBtn_Click(object sender, RoutedEventArgs e)
         {
+            
             TicketsList.Visibility = Visibility.Visible;
             lblClosed.Visibility = Visibility.Hidden;
             lblResolv.Visibility = Visibility.Hidden;
@@ -91,6 +95,39 @@ namespace IncidentManagementApplication.pages
                 ListHideBtn.Visibility = Visibility.Hidden;
             }
 
+        }
+
+        
+
+        private void UpdateListView(List<Ticket> newTickets)
+        {
+            ObservableCollection<Ticket> observableCollection = TicketsList.ItemsSource as ObservableCollection<Ticket>;
+            observableCollection?.Clear();
+
+            foreach (Ticket ticket in newTickets)
+            {
+                observableCollection?.Add(ticket);
+            }
+        }
+
+        private void FilterBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string filterText = FilterBox.Text.ToLower();
+
+            if (tickets != null)
+            {
+                List<Ticket> filteredTickets = tickets
+                    .Where(ticket =>
+                        (ticket.Incident.Description.ToLower().Contains(filterText)) ||
+                        (ticket.Status.ToString().ToLower().Contains(filterText)) ||
+                        (ticket.Id.ToString().ToLower().Contains(filterText)) ||
+                        (ticket.Severity.ToString().ToLower().Contains(filterText))
+                    )
+
+                    .ToList();
+                UpdateListView(filteredTickets);
+            }
+           
         }
     }
 }
