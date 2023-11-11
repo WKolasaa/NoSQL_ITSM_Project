@@ -29,17 +29,22 @@ namespace IncidentManagementApplication.resources.frames
             _loggedUser = LoggedUser.GetInstance();
             if (_loggedUser.GetUser().Role == Model.Role.RegularEmployee)
             {
+                btnTxtCreateTicket.Text = "Create Ticket";
                 btnCreateEmployee.Visibility = Visibility.Hidden;
+                btnCloseTickets.Visibility = Visibility.Hidden;
             }
             else
             {
+                btnTxtCreateTicket.Text = "Ticket Management";
                 btnCreateEmployee.Visibility = Visibility.Visible;
+                btnCloseTickets.Visibility = Visibility.Visible;
             }
             this.currentWindow = GetCurrentWindow();
             
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        // Dashboard - Rienat
+        private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
             currentWindow.frameMain.Source = new Uri("../pages/DashboardPage.xaml", UriKind.Relative);
         }
@@ -50,19 +55,16 @@ namespace IncidentManagementApplication.resources.frames
             currentWindow.frameMain.Source = new Uri("../pages/TicketsPage.xaml", UriKind.Relative);
         }
 
-        private void btnViewTickets_Click(object sender, RoutedEventArgs e)
-        {
-            currentWindow.frameMain.Source = new Uri("../pages/TicketsOverviewPage.xaml", UriKind.Relative);
-        }
-
-        private void btnDashboard_Click(object sender, RoutedEventArgs e)
-        {
-            currentWindow.frameMain.Source = new Uri("../pages/DashboardPage.xaml", UriKind.Relative);
-        }
-
+        // Create employee - Wojciech
         private void btnCreateEmployee_Click(object sender, RoutedEventArgs e)
         {
             currentWindow.frameMain.Source = new Uri("../pages/EmployeePage.xaml", UriKind.Relative);
+        }
+
+        // Close Tickets - Ignas
+        private void btnCloseTickets_Click(object sender, RoutedEventArgs e)
+        {
+            currentWindow.frameMain.Source = new Uri("../pages/TicketsClosePage.xaml", UriKind.Relative);
         }
 
         private MainWindow GetCurrentWindow()
