@@ -1,0 +1,52 @@
+﻿<Page x:Class="IncidentManagementApplication.resources.frames.NavigationFrame"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IncidentManagementApplication.resources.frames"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="170"
+      Background="LightBlue"
+      Title="NavigationFrame">
+
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical">
+            <Button x:Name="btnDashboard" Content="Dashboard" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top" 
+                    Height="50" Width="100" Margin="0,50,0,0" 
+                    Background="CornflowerBlue"
+                    Click="btnDashboard_Click"/>
+            <Button x:Name="btnCreateTicket"
+                    Height="50" Width="100" Margin="0,10,0,0"
+                    Background="CornflowerBlue"
+                    Click="btnCreateTicket_Click">
+                <TextBlock Name="btnTxtCreateTicket" TextWrapping="Wrap" TextAlignment="Center">
+                    Create Ticket
+                </TextBlock>
+            </Button>
+        </StackPanel>
+        <StackPanel x:Name="ServiceDeskGroup" Orientation="Vertical">
+            <Button x:Name="btnCreateEmployee" Content="Create employee" 
+                    VerticalAlignment="Top" 
+                    Height="50" Width="100" Margin="0,30,0,0" 
+                    Background="CornflowerBlue"
+                    Click="btnCreateEmployee_Click"/>
+            <Button x:Name="btnCloseTickets" 
+                    VerticalAlignment="Top" 
+                    Height="50" Width="100" Margin="0,10,0,0" 
+                    Background="CornflowerBlue"
+                    Click="btnCloseTickets_Click">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                    Close open tickets
+                </TextBlock>
+            </Button>
+            <Button x:Name="btnDataBackup" 
+                    Height="50" Width="100" Margin="0,70,0,0" 
+                    Background="SlateBlue"
+                    Click="btnDataBackup_Click">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center"><Run Text="Create data backup"/></TextBlock>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</Page>

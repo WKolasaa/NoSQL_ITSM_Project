@@ -1,0 +1,72 @@
+﻿<Page x:Class="IncidentManagementApplication.pages.TicketPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IncidentManagementApplication.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="434" d:DesignWidth="600"
+      Title="TicketPage"
+      Background="LightSkyBlue">
+
+    <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+        <Label x:Name="lblIncident" Content="Incident" HorizontalAlignment="Left" Margin="30,20,0,20" VerticalAlignment="Top" Height="62" Width="150" FontSize="36"/>
+        <StackPanel Orientation="Horizontal">
+            <GroupBox Header="Ticket Details" Height="172" Width="288" HorizontalAlignment="Left">
+                <StackPanel Orientation="Vertical" Margin="10,5,10,5">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="ID:"/>
+                        <TextBox x:Name="txtBoxTicketId" Width="150" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Severity:"/>
+                        <ComboBox x:Name="comboBoxTicketSeverity" Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Status:"/>
+                        <ComboBox x:Name="comboBoxTicketStatus" Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Date Created:"/>
+                        <DatePicker x:Name="datePickTicketCreation" Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Date Updated:"/>
+                        <DatePicker x:Name="datePickTicketUpdate" Width="150"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Incident Details" Height="172" Width="288" Margin="0,0,0,0">
+                <StackPanel Orientation="Vertical" Margin="10,5,10,5">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Type:"/>
+                        <ComboBox x:Name="comboBoxIncidentType" Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Reporter:"/>
+                        <TextBox x:Name="txtBoxIncidentReporter" Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Description:"/>
+                        <TextBox x:Name="txtBoxIncidentDescription" Width="150" Height="90"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnCreateTicket" 
+                    Click="btnCreateTicket_Click"
+                    Content="Create Ticket" 
+                    Width="100" Height="40"/>
+            <Button x:Name="btnEditTicket" 
+                    Click="btnEditTicket_Click"
+                    Content="Edit Ticket" 
+                    Width="100" Height="40"/>
+            <Button x:Name="btnDeleteTicket" 
+                    Click="btnDeleteTicket_Click"
+                    Content="Delete Ticket" 
+                    Width="100" Height="40"/>
+        </StackPanel>
+        
+    </StackPanel>
+</Page>
